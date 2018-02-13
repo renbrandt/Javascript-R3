@@ -1,6 +1,6 @@
 
     var xhttp = new XMLHttpRequest();
-    var timetableHKI = "";
+    var timetable = "";
 
     function getFile() {
         var depstation = document.getElementById("depoptions").value;
@@ -18,10 +18,15 @@
             /* Alla käydään läpi saatu ulkoinen data. For loop käy datan läpi, var result antaa
             datalle indeksin, muut hakevat niiden kuvaamia arvoja datasta.*/
 
-                for (i = 0; trains.length; i++){
+                for (var i = 0; trains.length; i++){
                     var result = trains[i];
+<<<<<<< HEAD
                     // var destinationIndex = result.timeTableRows[result.timeTableRows[]];
                     // console.log(destinationIndex);
+=======
+                    var index = indexSearch(result);
+
+>>>>>>> 589facfb7dbb709e71767aec58b6b02c7d974d28
                     var deptTime = new Date(result.timeTableRows[0].scheduledTime).toLocaleTimeString("fi", {hour: '2-digit', minute:'2-digit', hour12: false});
                     var arrTime = new Date(result.timeTableRows[result.timeTableRows.length-1].scheduledTime).toLocaleTimeString("fi", {hour: '2-digit', minute:'2-digit', hour12: false});
                     var arrStation = (result.timeTableRows[result.timeTableRows.length - 1].stationShortCode);
@@ -29,13 +34,22 @@
 
                     console.log(arrStation);
                     if (result.timeTableRows[i].type === "DEPARTURE") { //tulostetaan vain departures
-                    timetableHKI = timetableHKI + "<li>" + result.timeTableRows[i].type + "Määräasema: " + arrStation + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime;
+                    timetable = timetable + "<div class=\"trips\" \"trip\""+i+"\">" + "Määräasema: " + arrStation + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime + "</div>";
+                        for(var k = 0; k < index; k++) {
+                            if (result.timeTableRows[i].type === "DEPARTURE"){
+                            timetable = timetable + "<div class=\"stops\" \"stop\""+i+"\">"+ result.timeTableRows[k].stationShortCode+" - " + result.timeTableRows[k].scheduledTime + "</div>";
+                            }
+                        }
                     }
 
+<<<<<<< HEAD
 
                 document.getElementById("list").innerHTML = timetableHKI;
 
 
+=======
+                document.getElementById("list").innerHTML = timetable;
+>>>>>>> 589facfb7dbb709e71767aec58b6b02c7d974d28
                 }
 
 
@@ -50,3 +64,21 @@
 
 
 
+<<<<<<< HEAD
+=======
+
+    function getFile() {
+    xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/HKI/LH', true);
+    xhttp.send(null);
+
+    }
+        // Renne koodas Tiinan kanssa.
+    function indexSearch(result) {
+        for (var j = 0; j<result.timeTableRows.length;j++) {
+            var arriIndex = result.timeTableRows[j].stationShortCode;
+            if (arriIndex == 'LH') {
+                return j;
+            }
+        }
+    }
+>>>>>>> 589facfb7dbb709e71767aec58b6b02c7d974d28
