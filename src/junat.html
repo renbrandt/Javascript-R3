@@ -5,6 +5,8 @@
     <title>Junat</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+
+
 </head>
 
 
@@ -28,39 +30,23 @@
         <option value="JY">Jyväskylä</option>
     </select>
         </div>
-    <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></br>
 
+    <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></br>
+        
     </div>
 
     <div id="results">
-        <ol id="list"></ol>
+        <div id="list"></div>
 
     <script src="junat.js"></script>
+
     </div>
 
-    <div class="photoadds" style="max-width:800px">
-    <img class="slideshow" src="https://cdn.stocksnap.io/img-thumbs/960w/7RT2OUGJX5.jpg" style="width:100%">
-    <img class="slideshow" src="https://cdn.stocksnap.io/img-thumbs/960w/XSTO5645BM.jpg" style="width:100%">
-    <img class="slideshow" src="https://cdn.stocksnap.io/img-thumbs/960w/2RTQTEA00I.jpg" style="width:100%">
-        <script>
-            var myIndex = 0;
-            carousel();
 
-            function carousel() {
-                var i;
-                var x = document.getElementsByClassName("slideshow");
-                for (i = 0; i < x.length; i++) {
-                    x[i].style.display = "none";
-                }
-                myIndex++;
-                if (myIndex > x.length) {myIndex = 1}
-                x[myIndex-1].style.display = "block";
-                setTimeout(carousel, 5000); // Change image every 2 seconds
-            }
-        </script>
 </div>
 
     <footer></footer>
+
 </div>
 </body>
 </html>
