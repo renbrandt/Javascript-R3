@@ -1,0 +1,22 @@
+#MainContent {
+text-align:center;
+width: 100%;
+    margin-top: 100px;
+    padding-bottom: 10px;
+
+}
+#results {
+    border: solid black;
+}
+#search {
+    border: solid black;
+}
+#from {
+    float:left;
+    width:50%;
+}
+
+#to {
+    float:left;
+    width:50%;
+}

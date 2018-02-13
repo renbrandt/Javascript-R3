@@ -3,24 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Junat</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
 </head>
 
 
 <body>
-
-    <h1>Juna-aikataulu</h1>
+<div id="MainContent">
+    <div id="search">
+        <div id="from">
     <h2>Lähtöasema:<select name="deptstation">
         <option value="A">Helsinki</option>
         <option value="A">Tampere</option>
         <option value="A">Turku</option>
+    </select> </h2></div>
+        <div id="to">
+    <h2>Määränpää:<select name="destistation">
+        <option value="A">Helsinki</option>
+        <option value="A">Tampere</option>
+        <option value="A">Turku</option>
     </select> </h2>
+        </div>
 
     <input type="button" value="Hae aikataulu" id="hae" onclick=getFile()></br>
-    <ol id="list"></ol>
 
+    </div>
+    <div id="results">
+        <ol id="list"></ol>
 
     <script src="junat.js"></script>
-
+    </div>
+</div>
 </body>
 </html>
