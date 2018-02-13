@@ -13,17 +13,19 @@
 
     <div id="search">
         <div id="from">
-    <h2 id="departures">Lähtöasema<select name="deptstation", id="depoptions">
+    <select name="departure", id="depoptions">
+        <option>Lähtöasema</option>
         <option value="HKI">Helsinki</option>
         <option value="TPE">Tampere</option>
         <option value="TKU">Turku</option>
-    </select> </h2></div>
+    </select> </div>
         <div id="to">
-    <h2 id="destinations">Määränpää<select name="destistation", id="destoptions">
+    <select name="destination", id="destoptions">
+        <option>Määränpää</option>
         <option value="LH">Lahti</option>
         <option value="LR">Lappeenranta</option>
         <option value="JY">Jyväskylä</option>
-    </select> </h2>
+    </select>
         </div>
     <input type="button" value="Hae aikataulu" id="hae" onclick=getFile()></br>
 
