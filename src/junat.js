@@ -1,17 +1,17 @@
-function haeFile() {
+function getFile() {
     var xhttp = new XMLHttpRequest();
-    var aikataulu = "";
+    var timetable = "";
 
     xhttp.onreadystatechange = function(){
         if (xhttp.readyState == 4 && xhttp.status == 200){
 
-            var junat = JSON.parse(xhttp.responseText);
-            console.log(junat);
+            var trains = JSON.parse(xhttp.responseText);
+            console.log(trains);
 
-            for (i = 0; junat.length; i++){
-                aikataulu = aikataulu + "<li>" + junat[i].trainType + ", " + junat[i].trainNumber;
+            for (i = 0; trains.length; i++){
+                timetable = timetable + "<li>" + trains[i].trainType + ", " + trains[i].trainNumber;
 
-                document.getElementById("lista").innerHTML = aikataulu;
+                document.getElementById("list").innerHTML = timetable;
             }
 
         }
