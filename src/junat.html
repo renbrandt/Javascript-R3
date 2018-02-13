@@ -10,24 +10,25 @@
 
 <body>
 <div id="MainContent">
-    <div class = "title">Mihin olet menossa?</div>
+
     <div id="search">
         <div id="from">
-    <h2 id="departures">Lähtöasema:<select name="deptstation", id="depoptions">
+    <h2 id="departures">Lähtöasema<select name="deptstation", id="depoptions">
         <option value="HKI">Helsinki</option>
         <option value="TPE">Tampere</option>
         <option value="TKU">Turku</option>
     </select> </h2></div>
         <div id="to">
-    <h2 id="destinations">Määränpää:<select name="destistation", id="destoptions">
+    <h2 id="destinations">Määränpää<select name="destistation", id="destoptions">
         <option value="LH">Lahti</option>
         <option value="LR">Lappeenranta</option>
         <option value="JY">Jyväskylä</option>
     </select> </h2>
-
+        </div>
     <input type="button" value="Hae aikataulu" id="hae" onclick=getFile()></br>
 
     </div>
+
     <div id="results">
         <ol id="list"></ol>
 
