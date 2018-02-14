@@ -29,13 +29,18 @@
                     var arrTime = new Date(result.timeTableRows[index].scheduledTime).toLocaleTimeString("fi", {hour: '2-digit', minute:'2-digit', hour12: false});
                     var arrStation = (result.timeTableRows[index].stationShortCode);
 
-
                     console.log(arrStation);
                     if (result.timeTableRows[i].type === "DEPARTURE") { //tulostetaan vain departures
-                    timetable = timetable + "<div class=\"trips trip"+i+"\">" + "Määräasema: " + arrStation + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime + "</div>";
-                  //  for(var k = 0; k <= index; k++) {
-                  //         timetable = timetable + "<div class=\"stops stop" + i + "\">" + result.timeTableRows[i].type + " - " + result.timeTableRows[k].stationShortCode + " - " + result.timeTableRows[k].scheduledTime + "</div>";
-                  //      }
+                    timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + "Määräasema: " + arrStation + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime + "<div>";
+
+
+                    for(var k = 0; k <= index; k++) {
+                        var arrTimeStop = new Date(result.timeTableRows[k].scheduledTime).toLocaleTimeString("fi", {hour: '2-digit', minute:'2-digit', hour12: false});
+                        if (result.timeTableRows[k].type === "DEPARTURE") {
+                            timetable = timetable + "<div class=\"stops\">"  + result.timeTableRows[k].stationShortCode + " - " + arrTimeStop + "</div>";
+                            }
+                        }
+                        timetable = timetable +"</div></div>";
                     }
 
 
@@ -62,3 +67,11 @@
         }
     }
 
+    function toggleStopsVisibility(event) {
+        var stopsToggle = event.target.firstElementChild;
+        if (stopsToggle.style.display === "none") {
+            stopsToggle.style.display = "block";
+        } else {
+        stopsToggle.style.display = "none";
+        }
+    }
