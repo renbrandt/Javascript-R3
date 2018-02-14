@@ -33,9 +33,9 @@ function getFile() {
             var userSetTime;
             var timeElementValue = document.getElementById("setTime").value;
             var pattern = new RegExp("[0-2]\\d:[0-5]\\d");
-            if(pattern.test(timeElementValue)) {
+            if (pattern.test(timeElementValue)) {
                 userSetTime = new Date(Date.now());
-                userSetTime.setHours(timeElementValue.substring(0,2), timeElementValue.substring(3,5));
+                userSetTime.setHours(timeElementValue.substring(0, 2), timeElementValue.substring(3, 5));
                 userSetTime = userSetTime.getTime();
             } else {
                 userSetTime = Date.now();
@@ -74,54 +74,57 @@ function getFile() {
                     trainNumber = "Lähijuna " + result.commuterLineID;
                 }
 
+                    var arrStation = (result.timeTableRows[index].stationShortCode);
+                    var deptTime = new Date(result.timeTableRows[0].scheduledTime).toLocaleTimeString("fi", {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false,
 
-                var arrStation = (result.timeTableRows[index].stationShortCode);
-                var deptTime = new Date(result.timeTableRows[0].scheduledTime).toLocaleTimeString("fi", {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                });
-                var arrTime = new Date(result.timeTableRows[index].scheduledTime).toLocaleTimeString("fi", {
-                    hour: '2-digit',
-                    minute: '2-digit',
-                    hour12: false
-                });
+                    });
 
-                /* Muutetaan lähtö- ja saapumisaika millisekunteiksi, jotta saadaan laskettua matkan kesto!  Tiina lisäsi nämä. */
-                var deptTimeMS = Date.parse(result.timeTableRows[0].scheduledTime);
-                var arrTimeMS = Date.parse(result.timeTableRows[index].scheduledTime);
-                var triptimeMS = arrTimeMS - deptTimeMS;
+                    var arrTime = new Date(result.timeTableRows[index].scheduledTime).toLocaleTimeString("fi", {
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false
+                    });
 
-                var tripTime = msToTime();
+                    /* Muutetaan lähtö- ja saapumisaika millisekunteiksi, jotta saadaan laskettua matkan kesto!  Tiina lisäsi nämä. */
+                    var deptTimeMS = Date.parse(result.timeTableRows[0].scheduledTime);
+                    var arrTimeMS = Date.parse(result.timeTableRows[index].scheduledTime);
+                    var triptimeMS = arrTimeMS - deptTimeMS;
+
+                    var tripTime = msToTime();
 
 
-                if (result.timeTableRows[i].type === "DEPARTURE") { //tulostetaan vain departures
-                    timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime + " Matkan kesto: " + tripTime + "<div>";
+                    if (result.timeTableRows[i].type === "DEPARTURE") { //tulostetaan vain departures
+                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime + " Matkan kesto: " + tripTime + "<div>";
 
-                    for (var k = 0; k <= index; k++) {
-                        var arrTimeStop = new Date(result.timeTableRows[k].scheduledTime).toLocaleTimeString("fi", {
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: false
-                        });
-                        if (result.timeTableRows[k].type === "DEPARTURE") {
-                            timetable = timetable + "<div class=\"stops\">" + result.timeTableRows[k].stationShortCode + " - " + arrTimeStop + "</div>";
+                        for (var k = 0; k <= index; k++) {
+                            var arrTimeStop = new Date(result.timeTableRows[k].scheduledTime).toLocaleTimeString("fi", {
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: false
+                            });
+                            if (result.timeTableRows[k].type === "DEPARTURE") {
+                                timetable = timetable + "<div class=\"stops\">" + result.timeTableRows[k].stationShortCode + " - " + arrTimeStop + "</div>";
+                            }
                         }
+                        timetable = timetable + "</div></div>";
                     }
-                    timetable = timetable + "</div></div>";
+
+
+                    document.getElementById("list").innerHTML = timetable;
+
+
                 }
-
-
-                document.getElementById("list").innerHTML = timetable;
 
 
             }
 
-
         }
+        ;
+        timetable = " ";
 
-    };
-    timetable = " ";
 }
 
 // Renne koodas Tiinan kanssa.

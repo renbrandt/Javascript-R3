@@ -18,14 +18,11 @@
 </nav>
 
 <div id="MainContent">
-
     <div id="search">
         <div id="from">
-            <div id = titlef><h2>Mistä</h2></div>
-            <input type="text" id="getDepCity" list="depoptions"/>
-    <datalist name="departure", id="depoptions">
+            <input type="text" id="getDepCity" list="depoptions" placeholder="Mistä">
+            <datalist id="depoptions">
 
-        <option>Lähtöasema</option>
         <option value="HKI">Helsinki</option>
         <option value="HL">Hämeenlinna</option>
         <option value="JY">Jyväskylä</option>
@@ -45,9 +42,8 @@
         </div>
 
         <div id="to">
-            <div id="titlet"> <h2>Mihin</h2></div>
-    <datalist name="destination", id="destoptions">
-        <option>Määränpää</option>
+            <input type="text" id="getArrCity" list="destoptions" placeholder="Mihin">
+            <datalist id="destoptions">
         <option value="HKI">Helsinki</option>
         <option value="HL">Hämeenlinna</option>
         <option value="JY">Jyväskylä</option>
@@ -64,7 +60,7 @@
         <option value="VS">Vaasa</option>
 
     </datalist>
-            <input type="text" id="getArrCity" list="destoptions">
+
         </div>
     <input type="text" value="Syötä lähtöaika hh:mm" id="setTime">
     <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></br>

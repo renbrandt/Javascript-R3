@@ -1,3 +1,5 @@
+
+
 @import url(https://fonts.googleapis.com/css?family=Dosis:300|Lato:300,400,600,700|Roboto+Condensed:300,700|Open+Sans+Condensed:300,600|Open+Sans:400,300,600,700|Maven+Pro:400,700);
 @import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
 * {
@@ -138,53 +140,17 @@ a {
     -webkit-border-radius: 4px;
     border-radius: 4px;
 }
-.content .social {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    text-align: center;
-}
-.content .social span {
-    display: inline-block;
-    vertical-align: baseline;
-    padding: 0 20px;
-}
-.content .social span:before, .content .social span:after {
-    content: '';
-    display: block;
-    width: 500px;
-    position: absolute;
-    top: 0.9em;
-    border-top: 1px solid White;
-}
-.content .social span:before {
-    right: 75%;
-}
-.content .social span:after {
-    left: 75%;
-}
-.content .buttons {
-    width: 100%;
-    margin: 30px 0px;
-}
-.content .buttons button {
-    margin-left: 20px;
-    width: 60%;
-    margin: 0px 1.5%;
-}
-.content .buttons button i {
-    padding-right: 7px;
+
+#login_btn {
+    color: white;
+    background-color:#66A756;
 }
 
-.content .buttons button.google {
-    background-color: #DA4735;
-    margin-left: 100px;
+#rgstr_btn {
+    color:white;
+    background-color:#66A756;
 }
-.content .buttons:after {
-    content: "";
-    display: block;
-    clear: both;
-}
+
 .content .already {
     text-align: center;
     font-size: 0.9rem;
