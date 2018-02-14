@@ -3,6 +3,7 @@
     var timetable = "";
     var depstation ="";
     var arrstation="";
+    var id_kayttaja="";
 
     function getFile() {
         depstation = document.getElementById("getDepCity").value;
@@ -81,7 +82,14 @@
                     }
 
 
+                    userDeptStation.splice(id_kayttaja, 1, depstation);
+                    localStorage.setItem("userDeptStation", JSON.stringify(userDeptStation));
+
+
+                    //userDeptStation.splice(id_kayttaja+1, 1);
+
                         document.getElementById("list").innerHTML = timetable;
+
 
 
                 }
@@ -108,6 +116,8 @@
 
     var usernameArray = [];
     var pwArray =[];
+    var userDeptStation =[];
+    //var userArrStation = [];
 
     // storing input from register-form
     function store() {
@@ -115,6 +125,8 @@
         var pw = document.getElementById('pw').value;
         usernameArray.push(username);
         pwArray.push(pw);
+        userDeptStation.push("");
+        //userArrStation.push("");
         localStorage.setItem("usernameArray", JSON.stringify(usernameArray));
         localStorage.setItem("pwArray", JSON.stringify(pwArray));
 
@@ -127,28 +139,37 @@
     function check() {
 
         // stored data from the register-form
-        var storedNames = localStorage.getItem('usernameArray');
-        var storedPws = localStorage.getItem('pwArray');
-        storedNames  = usernameArray;
-        storedPws = pwArray;
+        var storedNames = JSON.parse(localStorage.getItem('usernameArray'));
+        var storedPws = JSON.parse(localStorage.getItem('pwArray'));
+
+
         var valid = -1;
 
-        console.log(storedNames);
+//        console.log(storedNames);
+        //console.log(storedPws);
 
         // entered data from the login-form
         var userName = document.getElementById('userName').value;
         var userPw = document.getElementById('userPw').value;
 
+        console.log(storedNames[0]);
+        console.log(userName);
+        //console.log(storedPws);
+
+
         for (i=0; i<storedNames.length;i++) {
         // check if stored data from register-form is equal to data from login form
         if (userName == storedNames[i] && userPw == storedPws[i]) {
             valid = i;
+            id_kayttaja=i;
             break;
         }
         }
 
         if (valid != -1) {
             alert('You are logged in now:' + storedNames[valid]);
+
+                
         } else {
             alert('ERROR.');
         }
