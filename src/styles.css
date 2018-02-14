@@ -145,3 +145,19 @@ h1 {
 .login_btn {
    background-color: transparent;
 }
+
+.stops {
+    border: 1px solid black;
+}
+
+.trips > div:first-child {
+    display: none;
+}
+
+.trips {
+    background-color: white;
+    background-color:rgba(255, 255, 255, 0.5);
+    border: 1px solid black;
+}
+
+
