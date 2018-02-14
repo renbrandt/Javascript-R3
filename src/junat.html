@@ -12,15 +12,19 @@
 
 <body>
 <nav><img src="https://uploads-ssl.webflow.com/58e5f3f8d26a849c4569f248/58e5f3f8d26a849c4569f2f7_Academy_250x50%20footer.png">
-
+<ul>
+    <li><a href="#" onClick="window.open('jumpherelogin.html','loginpage','resizable,height=800,width=540'); return false;">Kirjaudu sisään</a></li>
+</ul>
 </nav>
 
 <div id="MainContent">
 
-    <a href="#" onClick="window.open('jumpherelogin.html','loginpage','resizable,height=800,width=540'); return false;">Kirjaudu sisään</a>
     <div id="search">
         <div id="from">
-    <select name="departure", id="depoptions">
+            <div id = titlef><h2>Mistä</h2></div>
+            <input type="text" id="getDepCity" list="depoptions"/>
+    <datalist name="departure", id="depoptions">
+
         <option>Lähtöasema</option>
         <option value="HKI">Helsinki</option>
         <option value="HL">Hämeenlinna</option>
@@ -36,9 +40,13 @@
         <option value="TKL">Tikkurila</option>
         <option value="TKU">Turku</option>
         <option value="VS">Vaasa</option>
-    </select> </div>
+    </datalist>
+
+        </div>
+
         <div id="to">
-    <select name="destination", id="destoptions">
+            <div id="titlet"> <h2>Mihin</h2></div>
+    <datalist name="destination", id="destoptions">
         <option>Määränpää</option>
         <option value="HKI">Helsinki</option>
         <option value="HL">Hämeenlinna</option>
@@ -55,7 +63,8 @@
         <option value="TKU">Turku</option>
         <option value="VS">Vaasa</option>
 
-    </select>
+    </datalist>
+            <input type="text" id="getArrCity" list="destoptions">
         </div>
 
     <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></br>
