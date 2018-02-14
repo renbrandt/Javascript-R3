@@ -72,7 +72,7 @@
 
 
                     if (result.timeTableRows[i].type === "DEPARTURE") { //tulostetaan vain departures
-                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime +" Matkan kesto: " + tripTime + "<div>";
+                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime +"  Matkan kesto: " + tripTime + "<div>";
 
                         for(var k = 0; k <= index; k++) {
                             var arrTimeStop = new Date(result.timeTableRows[k].scheduledTime).toLocaleTimeString("fi", {hour: '2-digit', minute:'2-digit', hour12: false});

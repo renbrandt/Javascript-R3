@@ -7,7 +7,6 @@ body {
     background-size: cover;
 
 
-
 }
 #MainContent:before {
     MainContent:"";
@@ -22,7 +21,6 @@ body {
     height: 100%;
     margin-top: 100px;
     padding-bottom: 10px;
-
 
 }
 
@@ -74,7 +72,7 @@ body {
 }
 
 #hae {
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     margin-top: 0px;
     margin-right: 50px;
     width: 200px;
@@ -98,20 +96,20 @@ body {
     height: 50px;
     width: 400px;
     float: right;
-    margin-right: 20px;
-    margin-top: 80px;
+    margin-right: 10px;
+    margin-top: 70px;
     font-size: 16px;
     border-radius: 10px;
 }
 
 #getArrCity {
-    margin-left: 20px;
+    margin-left: 10px;
     height: 50px;
     width: 400px;
     float: left;
     margin-left: 20px;
     margin-bottom: 50px;
-    margin-top: 80px;
+    margin-top: 70px;
     font-size: 16px;
     border-radius: 10px;
 }
@@ -136,17 +134,13 @@ h1 {
     color: darkslateblue;
 }
 
-.photoadds {
-    margin-top: 100px;
-    margin-left: 20%;
-}
-
 .login_btn {
    background-color: white;
 }
 
 .stops {
     border: 1px solid black;
+    padding: 10px;
 }
 
 .trips > div:first-child {
@@ -154,9 +148,10 @@ h1 {
 }
 
 .trips {
-    background-color: white;
+    background-color: black;
     background-color:rgba(255, 255, 255, 0.5);
     border: 1px solid black;
+    padding: 10px;
 }
 
 ul {
@@ -174,18 +169,13 @@ a:link {
     text-decoration: none;
     display: inline-block;
     font-family: "Open Sans";
+    border-radius: 4px;
 }
 
-#titlef {
-    margin-left: 400px;
-    overflow: hidden;
-
-
-}
-
-#titlet {
-
-
+#results {
+    font-family: "Open Sans";
+    text-align: left;
+    font-size: 20px;
 }
 
 
