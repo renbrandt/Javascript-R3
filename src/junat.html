@@ -12,23 +12,13 @@
 
 <body>
 <nav><img src="https://uploads-ssl.webflow.com/58e5f3f8d26a849c4569f248/58e5f3f8d26a849c4569f2f7_Academy_250x50%20footer.png">
-
+<ul>
+    <li><a href="#" id=loginlink onClick="window.open('jumpherelogin.html','loginpage','resizable,height=800,width=540'); return false;">Kirjaudu sisään</a></li>
+</ul>
 </nav>
 
 <div id="MainContent">
-
-    <form id="register-form">
-    <input id="name1" type="text" placeholder="Käyttäjätunnus" value=""/>
-        <input id="pw" type="password" placeholder="Salasana" value=""/>
-    <input id="rgstr_btn" type="submit" value="Rekisteröidy" onClick="store()"/>
-</form>
-
-    <form id="login-form">
-        <input id="userName" type="text" placeholder="Käyttäjätunnus" value=""/>
-        <input id="userPw" type="password" placeholder="Salasana" value=""/>
-        <input id="login_btn" type="submit" value="Kirjaudu sisään" onClick="check()"/>
-    </form>
-
+    
     <div id="search">
         <div id="from">
             <input type="text" list="depoptions"/>
