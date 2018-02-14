@@ -175,7 +175,10 @@ a:link {
     text-decoration: none;
     display: inline-block;
     font-family: "Open Sans";
+}
 
+#titlef {
+    font-family: Verdana
 }
 
 
