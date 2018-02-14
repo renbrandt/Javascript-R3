@@ -7,7 +7,8 @@
     function getFile() {
         depstation = document.getElementById("depoptions").value;
         arrstation = document.getElementById("destoptions").value;
-        xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/' + depstation + "/" + arrstation, true);
+        xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/' + depstation + '/' + arrstation + '/' + '?limit=10', true);
+        //limit loppuosa rajoittaa näytettävät yhteydet viiteen!
         xhttp.send(null);
 
 
