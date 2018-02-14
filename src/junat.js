@@ -107,33 +107,53 @@
 
 
     // Name and Password from the register-form
-    var username = document.getElementById('name1');
-    var pw = document.getElementById('pw');
+
+    var usernameArray = [];
+    var pwArray =[];
 
     // storing input from register-form
     function store() {
-        localStorage.setItem('username', username.value);
-        localStorage.setItem('pw', pw.value);
+        var username = document.getElementById('name1').value;
+        var pw = document.getElementById('pw').value;
+        usernameArray.push(username);
+        pwArray.push(pw);
+        localStorage.setItem("usernameArray", JSON.stringify(usernameArray));
+        localStorage.setItem("pwArray", JSON.stringify(pwArray));
+
+        console.log(localStorage.getItem("usernameArray"));
+        console.log(localStorage.getItem("pwArray"));
+
     }
 
     // check if stored data from register-form is equal to entered data in the   login-form
     function check() {
 
         // stored data from the register-form
-        var storedName = localStorage.getItem('username');
-        var storedPw = localStorage.getItem('pw');
+        var storedNames = localStorage.getItem('usernameArray');
+        var storedPws = localStorage.getItem('pwArray');
+        storedNames  = usernameArray;
+        storedPws = pwArray;
+        var valid = -1;
+
+        console.log(storedNames);
 
         // entered data from the login-form
-        var userName = document.getElementById('userName');
-        var userPw = document.getElementById('userPw');
+        var userName = document.getElementById('userName').value;
+        var userPw = document.getElementById('userPw').value;
 
+        for (i=0; i<storedNames.length;i++) {
         // check if stored data from register-form is equal to data from login form
-        if (userName.value == storedName && userPw.value == storedPw) {
-            alert('You are logged in.');
+        if (userName == storedNames[i] && userPw == storedPws[i]) {
+            valid = i;
+            break;
+        }
+        }
+
+        if (valid != -1) {
+            alert('You are logged in now:' + storedNames[valid]);
         } else {
             alert('ERROR.');
         }
-
     }
 
 
