@@ -1,10 +1,12 @@
 
     var xhttp = new XMLHttpRequest();
     var timetable = "";
+    var depstation ="";
+    var arrstation="";
 
     function getFile() {
-        var depstation = document.getElementById("depoptions").value;
-        var arrstation = document.getElementById("destoptions").value;
+        depstation = document.getElementById("depoptions").value;
+        arrstation = document.getElementById("destoptions").value;
         xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/' + depstation + "/" + arrstation, true);
         xhttp.send(null);
 
@@ -54,7 +56,7 @@
     function indexSearch(result) {
         for (var j = 0; j<result.timeTableRows.length;j++) {
             var arriIndex = result.timeTableRows[j].stationShortCode;
-            if (arriIndex == 'LH') {
+            if (arriIndex == arrstation) {
                 return j;
             }
         }
