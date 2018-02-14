@@ -5,8 +5,8 @@
     var arrstation="";
 
     function getFile() {
-        depstation = document.getElementById("depoptions").value;
-        arrstation = document.getElementById("destoptions").value;
+        depstation = document.getElementById("getDepCity").value;
+        arrstation = document.getElementById("getArrCity").value;
         xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/' + depstation + '/' + arrstation + '/' + '?limit=10', true);
         //limit loppuosa rajoittaa näytettävät yhteydet viiteen!
         xhttp.send(null);
@@ -145,7 +145,3 @@
     }
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 4ec50d116f5fea908ae1191e1accc7335b9c93bb

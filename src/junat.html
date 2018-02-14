@@ -21,9 +21,9 @@
 
     <div id="search">
         <div id="from">
-            <input type="text" list="depoptions"/>
+
     <datalist name="departure", id="depoptions">
-        <option selected>Lähtöasema</option>
+        <option>Lähtöasema</option>
         <option value="HKI">Helsinki</option>
         <option value="HL">Hämeenlinna</option>
         <option value="JY">Jyväskylä</option>
@@ -39,10 +39,10 @@
         <option value="TKU">Turku</option>
         <option value="VS">Vaasa</option>
     </datalist>
+            <input type="text" id="getDepCity" list="depoptions"/>
         </div>
 
         <div id="to">
-            <input type="text" list="destoptions">
     <datalist name="destination", id="destoptions">
         <option>Määränpää</option>
         <option value="HKI">Helsinki</option>
@@ -61,6 +61,7 @@
         <option value="VS">Vaasa</option>
 
     </datalist>
+            <input type="text" id="getArrCity" list="destoptions">
         </div>
 
     <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></br>
