@@ -62,6 +62,9 @@
                         console.log(hours);
                         var divisor_for_minutes = secs % (60 * 60);
                         var minutes = Math.floor(divisor_for_minutes / 60);
+                            if (minutes < 10){
+                                minutes = "0" + Math.floor(divisor_for_minutes / 60);
+                            }
                         return hours + ":" + minutes;
                     }
                     var tripTime = msToTime();
