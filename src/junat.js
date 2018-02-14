@@ -86,6 +86,7 @@
                     localStorage.setItem("userDeptStation", JSON.stringify(userDeptStation));
 
 
+
                     //userDeptStation.splice(id_kayttaja+1, 1);
 
                         document.getElementById("list").innerHTML = timetable;
@@ -168,8 +169,8 @@
 
         if (valid != -1) {
             alert('You are logged in now:' + storedNames[valid]);
+                document.getElementById("depoptions").innerHTML = JSON.parse(localStorage.getItem("userDeptStation")[id_kayttaja]).value;
 
-                
         } else {
             alert('ERROR.');
         }
