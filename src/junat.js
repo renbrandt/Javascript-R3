@@ -89,8 +89,6 @@
 
             }
 
-
-
     };
     timetable = " ";
     }
@@ -145,4 +143,6 @@
         stopsToggle.style.display = "none";
         }
     }
+
+
 
