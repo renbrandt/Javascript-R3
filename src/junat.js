@@ -20,13 +20,9 @@
 
                 for (var i = 0; trains.length; i++){
                     var result = trains[i];
-<<<<<<< HEAD
-                    // var destinationIndex = result.timeTableRows[result.timeTableRows[]];
-                    // console.log(destinationIndex);
-=======
+
                     var index = indexSearch(result);
 
->>>>>>> 589facfb7dbb709e71767aec58b6b02c7d974d28
                     var deptTime = new Date(result.timeTableRows[0].scheduledTime).toLocaleTimeString("fi", {hour: '2-digit', minute:'2-digit', hour12: false});
                     var arrTime = new Date(result.timeTableRows[result.timeTableRows.length-1].scheduledTime).toLocaleTimeString("fi", {hour: '2-digit', minute:'2-digit', hour12: false});
                     var arrStation = (result.timeTableRows[result.timeTableRows.length - 1].stationShortCode);
@@ -42,14 +38,9 @@
                         }
                     }
 
-<<<<<<< HEAD
 
-                document.getElementById("list").innerHTML = timetableHKI;
-
-
-=======
                 document.getElementById("list").innerHTML = timetable;
->>>>>>> 589facfb7dbb709e71767aec58b6b02c7d974d28
+
                 }
 
 
@@ -58,20 +49,9 @@
 
 
     };
-    timetableHKI = " ";
+    timetable = " ";
     }
 
-
-
-
-<<<<<<< HEAD
-=======
-
-    function getFile() {
-    xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/HKI/LH', true);
-    xhttp.send(null);
-
-    }
         // Renne koodas Tiinan kanssa.
     function indexSearch(result) {
         for (var j = 0; j<result.timeTableRows.length;j++) {
@@ -81,4 +61,4 @@
             }
         }
     }
->>>>>>> 589facfb7dbb709e71767aec58b6b02c7d974d28
+
