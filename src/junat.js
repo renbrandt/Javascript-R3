@@ -15,7 +15,6 @@
         if (xhttp.readyState == 4 && xhttp.status == 200){
 
             var trains = JSON.parse(xhttp.responseText);
-            console.log(trains);
 
             /* Alla käydään läpi saatu ulkoinen data. For loop käy datan läpi, var result antaa
             datalle indeksin, muut hakevat niiden kuvaamia arvoja datasta.*/
@@ -45,16 +44,31 @@
                             trainNumber = "Lähijuna " + result.commuterLineID;
                         }
 
-
                     var deptTime = new Date(result.timeTableRows[0].scheduledTime).toLocaleTimeString("fi", {hour: '2-digit', minute:'2-digit', hour12: false});
                     var arrTime = new Date(result.timeTableRows[index].scheduledTime).toLocaleTimeString("fi", {hour: '2-digit', minute:'2-digit', hour12: false});
                     var arrStation = (result.timeTableRows[index].stationShortCode);
 
+                    /* Muutetaan lähtö- ja saapumisaika millisekunteiksi, jotta saadaan laskettua matkan kesto!  Tiina lisäsi nämä. */
+                    var deptTimeMS = Date.parse(result.timeTableRows[0].scheduledTime);
+                    var arrTimeMS = Date.parse(result.timeTableRows[index].scheduledTime);
+                    var triptimeMS = arrTimeMS - deptTimeMS;
+
+                    /* Lasketaan millisekunteista tunnit ja minuutit */
+                    function msToTime(triptimeMS) {
+                        var triptimeMS = arrTimeMS - deptTimeMS;
+                        var secs = Math.floor(triptimeMS / 1000);
+                        var hours = Math.floor(secs / (60 * 60));
+                        console.log(hours);
+                        var divisor_for_minutes = secs % (60 * 60);
+                        var minutes = Math.floor(divisor_for_minutes / 60);
+                        return hours + ":" + minutes;
+                    }
+                    var tripTime = msToTime();
 
 
-                    console.log(arrStation);
+
                     if (result.timeTableRows[i].type === "DEPARTURE") { //tulostetaan vain departures
-                    timetable = timetable + "<div class=\"trips trip"+i+"\">" + trainNumber + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime + "</div>";
+                    timetable = timetable + "<div class=\"trips trip"+i+"\">" + trainNumber + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime +" Matkan kesto: " + tripTime + "</div>";
                   //  for(var k = 0; k <= index; k++) {
                   //         timetable = timetable + "<div class=\"stops stop" + i + "\">" + result.timeTableRows[i].type + " - " + result.timeTableRows[k].stationShortCode + " - " + result.timeTableRows[k].scheduledTime + "</div>";
                   //      }
