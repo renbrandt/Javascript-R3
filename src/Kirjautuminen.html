@@ -7,8 +7,8 @@
     <style>
         body >
         .modal {
-            display: none;
-            position: fixed;
+            display: none; /* Ei näy ensin */
+            position: fixed; /* Pysyy paikallaan */
             z-index: 1;
             left: 0;
             top: 0;
@@ -20,13 +20,7 @@
             padding-top: 60px;
         }
 
-        .modal-content {
-            background-color: #fefefe;
-            margin: 5% auto 15% auto;
-            border: 1px solid #888;
-            width: 80%;
-        }
-
+        /*Nämä tuovat kaavakkeen nätisti näkyviin:*/
         .animate {
             -webkit-animation: animatezoom 0.6s;
             animation: animatezoom 0.6s
@@ -50,12 +44,11 @@
             }
         }
 
-
     </style>
 </head>
 <body>
 
-<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">CREATE ACCOUNT</button>
+<button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">LOGIN</button>
 <div id="id01" class="modal">
     <form class="modal-content animate" action="/action_page.php">
         <div class="imgcontainer">
@@ -66,27 +59,25 @@
             <input type="text" placeholder="Enter Username" name="uname" required>
 
             <label>Password:</label>
-            <input type="password" placeholder="Enter Password" name="psw" required>
+            <input type="text" placeholder="Enter Password" name="psw" required>
+            <input type="button" value="Login" onClick="display(this.form)"/>
 
-            <button type="submit">Create account</button>
             <label>
                 <input type="checkbox" checked="checked" name="remember"> Remember me
             </label>
         </div>
     </form>
 </div>
-<script>
-    var modal = document.getElementById("id01");
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 
+<script src="KirjautuminenJS.js">
 </script>
 
 </head>
 
+</body>
+</html>
+</head>
+<body>
 
 </body>
 </html>
