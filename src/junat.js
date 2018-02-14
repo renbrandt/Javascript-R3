@@ -25,6 +25,8 @@
 
                     var index = indexSearch(result);
 
+                    /* Alla erotellaan onko lähi- vai kaukojuna ja lisätään junan tyyppi/ID. Tiina lisäsi nämä. */
+
                     var trainCategory = result.trainCategory;
                         if (trainCategory === "Long-distance"){
                             if (result.trainType === "IC"){
