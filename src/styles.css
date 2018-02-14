@@ -74,21 +74,21 @@ body {
 }
 
 #hae {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    margin-top: 0px;
+    margin-right: 50px;
     width: 200px;
     height: 50px;
     background-color: green;
     border: none;
     color: white;
-    padding: 20px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
     cursor: pointer;
     border-radius: 4px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+
 
 }
 
@@ -99,7 +99,6 @@ body {
     width: 400px;
     float: right;
     margin-right: 20px;
-    margin-bottom: 50px;
     margin-top: 80px;
     font-size: 16px;
     border-radius: 10px;
@@ -178,7 +177,15 @@ a:link {
 }
 
 #titlef {
-    font-family: Verdana
+    margin-left: 400px;
+    overflow: hidden;
+
+
+}
+
+#titlet {
+
+
 }
 
 
