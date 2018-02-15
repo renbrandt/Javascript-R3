@@ -339,6 +339,9 @@ var modal = document.getElementById('modal');
 
     login_btn.onclick=function() {
         check();
+
+        document.getElementById("loginbutton").style.visibility = "hidden";
+        document.getElementById("logoutbutton").style.visibility = "visible";
     }
 
     span.onclick=function() {
@@ -389,6 +392,7 @@ xhttp2.onreadystatechange = function () {
     };
 }
 
+document.getElementById("logoutbutton").style.visibility = "hidden";
 
 
 
