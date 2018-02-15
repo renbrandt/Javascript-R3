@@ -175,19 +175,20 @@ function getFile() {
                     //tulostetaan vain departures
                     // Koska ollaan vieläkin for-loppin sisällä, saadaan luotua jokaiselle halutulle matkalle oma DIVi, johon säädetään visibility toggle
                     if (result.timeTableRows[i].type === "DEPARTURE") {
-                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " | " + " Lähtöaika: " +  deptTime + " | " + " Saapumisaika: " + arrTime + " | " + " Matkan kesto: " + tripTime + "<div>";
+                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + "Lähtöaika: " +  deptTime + " | " + " Saapumisaika: " + arrTime +"<div>";
 
                         // Tehdään uusi for-loop, jonka avulla saadaan jokaista matkaa varten jokaisen välipysähdyksen. TUlostetaan lähtöaika ja paikka.
-                        for (var k = arrIndex; k <= index; k++) {
+                        for (var k = 0; k <= 0; k++) {
                             var arrTimeStop = new Date(result.timeTableRows[k].scheduledTime).toLocaleTimeString("fi", {
                                 hour: '2-digit',
                                 minute: '2-digit',
                                 hour12: false
                             });
                             if (result.timeTableRows[k].type === "DEPARTURE") {
-                                var indexOfShort = shortCode.indexOf(result.timeTableRows[k].stationShortCode);
-                                var station = longCode[indexOfShort-1];
-                                timetable = timetable + "<div class=\"stops\">" + station + " - " + arrTimeStop + "</div>";
+                                // Hieno ominaisuus välipysäkeille, mutta ei koskaan valmistunut
+                               // var indexOfShort = shortCode.indexOf(result.timeTableRows[k].stationShortCode);
+                                // var station = longCode[indexOfShort-1];
+                                timetable = timetable + "<div class=\"stops\">" + trainNumber + " - Matkan kesto: " + tripTime + "</div>";
                             }
                         }
 
@@ -387,7 +388,8 @@ function toggleStopsVisibility(event) {
     }
 }
 
-var xhttp2 = new XMLHttpRequest();
+// Hieno ominaisuus välipysäkeille, mutta ei koskaan valmistunut
+/*var xhttp2 = new XMLHttpRequest();
 xhttp2.open("GET", 'https://rata.digitraffic.fi/api/v1/metadata/stations', true);
 xhttp2.send(null);
 
@@ -404,7 +406,7 @@ xhttp2.onreadystatechange = function () {
         }
 
     };
-}
+}*/
 
 document.getElementById("logoutbutton").style.visibility = "hidden";
 
