@@ -354,6 +354,7 @@ var modal = document.getElementById('modal');
 lubtn.onclick=function() {
         login_id=0;
         id_kayttaja="";
+
     document.getElementById("getDepCity").value= "";
     document.getElementById("getArrCity").value= "";
 }
