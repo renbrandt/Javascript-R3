@@ -239,16 +239,18 @@ function check() {
 
         // Jos käyttäjätunnarit löytyvät, ilmoitetaan että ollaan paikalla + haetaan localstoragelta datat!
         if (valid != -1) {
-            alert('You are logged in now:' + storedNames[valid]);
+            console.log("ONNISTUI");
                // console.log(JSON.parse(localStorage.getItem("userDeptStation"))[id_kayttaja]);
                // console.log(JSON.parse(localStorage.getItem("pwArray")));
                // console.log(JSON.parse(localStorage.getItem("usernameArray")));
                document.getElementById("getDepCity").innerHTML = storedDept[id_kayttaja];
                document.getElementById("getArrCity").innerHTML = storedArr[id_kayttaja];
+            modal.style.display="none";
 
 
         } else {
             alert('ERROR.');
+            console.log("EIPÄ ONNISTUNU");
         }
 
 }
@@ -264,7 +266,8 @@ var modal = document.getElementById('modal');
     }
 
     login_btn.onclick=function() {
-        modal.style.display="none";
+        check();
+
     }
 
     span.onclick=function() {
