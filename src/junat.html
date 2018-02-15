@@ -5,6 +5,7 @@
     <title>Junat</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+    <script src="junat.js"></script>
 
 
 </head>
@@ -14,17 +15,17 @@
 <!--Navigaatiolinkit -->
 <nav>
     <img src="https://uploads-ssl.webflow.com/58e5f3f8d26a849c4569f248/58e5f3f8d26a849c4569f2f7_Academy_250x50%20footer.png">
-<!--<ul>
-    <li id ="link1"><a href="#" onClick="window.open('jumpherelogin.html','loginpage','resizable,height=800,width=540'); return false;">Kirjaudu sisään</a></li>
-    <li id="link2"><a href="junat.html">Kirjaudu ulos</a></li>
-</ul>-->
+<ul>
+    <li><button id ="loginbutton">Kirjaudu sisään</button></li>
+    <li id = "knownuser">käyttäjänimi</li>
+
+</ul>
 
 </nav>
 
 <!--Sisäänkirjautumistoiminto-->
 <div id="MainContent">
 
-    <button id ="loginbutton">Kirjaudu sisään</button>
     <div class="modal" id = "modal">
         <div class="modal-content">
             <span class="close">&times;</span>
@@ -98,7 +99,7 @@
     <div id="results">
         <div id="list"></div>
 
-    <script src="junat.js"></script>
+
 
     </div>
 
@@ -108,5 +109,7 @@
     <footer></footer>
 
 </div>
+
+<script src="junat.js"></script>
 </body>
 </html>
