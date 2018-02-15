@@ -266,7 +266,7 @@ function checkInNewAccount() {
     modal.style.display="none";
     var storedNames = JSON.parse(localStorage.getItem('usernameArray'));
     id_kayttaja=storedNames.length-1;
-    document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä: "+ storedNames[id_kayttaja];
+    document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br>"+ storedNames[id_kayttaja];
 
 }
 // Sisäänkirjautuminen. Tarkistetaan löytyykö syötetty käyttäjätunnust&salasana-pari localstoragelta.
