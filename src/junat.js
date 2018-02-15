@@ -221,9 +221,25 @@ function check() {
         } else {
             alert('ERROR.');
         }
+    // $(".nav li").ready(function() {
+    //     if (id_kayttaja === i){
+    //         $("link1").hide();
+    //     } else {
+    //         $("link2").hide();
+    //     }
+    //
+    // });
+
+    function hideNavFunction() {
+        if (id_kayttaja === i){
+            $("link2").show();
+            $("link1").hide();
+        }
+    }
 
 
-}
+
+
 
 // Käytetään tätä pysäkkien piilottamiseen! @Renne
 function toggleStopsVisibility(event) {

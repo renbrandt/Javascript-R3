@@ -178,6 +178,7 @@ a:link {
 
 #link2 {
     float:left;
+    display: none;
 }
 
 #results {
