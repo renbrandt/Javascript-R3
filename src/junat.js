@@ -252,29 +252,8 @@ function check() {
             alert('ERROR.');
             console.log("EIPÄ ONNISTUNU");
         }
-    // $(".nav li").ready(function() {
-    //     if (id_kayttaja === i){
-    //         $("link1").hide();
-    //     } else {
-    //         $("link2").hide();
-    //     }
-    //
-    // });
-
-    function hideNavFunction() {
-        if (id_kayttaja === i){
-            $("link2").show();
-            $("link1").hide();
-        }
-    }
-
-
-
-<<<<<<< HEAD
-
-=======
 }
->>>>>>> 72c360f71a86f83c5640c3f597b8bee5db39e366
+
 
 //Luotu erillinen kirjautumis-popup-ikkuna, joka sulkeutuu kun kirjaudutaan sisään @Outi @Tiina
 var modal = document.getElementById('modal');
