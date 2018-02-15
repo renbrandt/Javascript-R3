@@ -1,3 +1,5 @@
+localStorage.clear();
+
 // esitellään toiminnan kannalta tarvittavia muuttujia. Näihin asetetaan arvoja functioiden sisällä
 var xhttp = new XMLHttpRequest();
 var timetable = "";
@@ -199,6 +201,8 @@ function getFile() {
                     var tempTableDept = JSON.parse(localStorage.getItem('userDeptStation'));
                     var tempTableArr = JSON.parse(localStorage.getItem("userArrStation"));
 
+
+
                     tempTableDept.splice(id_kayttaja, 1, depstation);
                     tempTableArr.splice(id_kayttaja, 1, arrstation);
                     localStorage.setItem("userDeptStation", JSON.stringify(tempTableDept));
@@ -257,10 +261,18 @@ function indexSearch(result) {
         localStorage.setItem("usernameArray", JSON.stringify(usernameArray));
         localStorage.setItem("pwArray", JSON.stringify(pwArray));
         localStorage.setItem("userArrStation", JSON.stringify(userArrStation));
-
-
+        document.getElementById('name1').value = "";
+        document.getElementById('pw').value = "";
+        checkInNewAccount();
 }
 
+function checkInNewAccount() {
+    modal.style.display="none";
+    var storedNames = JSON.parse(localStorage.getItem('usernameArray'));
+    id_kayttaja=storedNames.length-1;
+    document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br>"+ storedNames[id_kayttaja];
+
+}
 // Sisäänkirjautuminen. Tarkistetaan löytyykö syötetty käyttäjätunnust&salasana-pari localstoragelta.
 function check() {
 
@@ -290,7 +302,6 @@ function check() {
 
         // Jos käyttäjätunnarit löytyvät, ilmoitetaan että ollaan paikalla + haetaan localstoragelta datat!
         if (valid != -1) {
-            console.log("ONNISTUI");
                // console.log(JSON.parse(localStorage.getItem("userDeptStation"))[id_kayttaja]);
                // console.log(JSON.parse(localStorage.getItem("pwArray")));
                // console.log(JSON.parse(localStorage.getItem("usernameArray")));
@@ -299,7 +310,7 @@ function check() {
             var storedUser = JSON.parse(localStorage.getItem("usernameArray"));
             document.getElementById("getDepCity").value= storedDept[id_kayttaja];
             document.getElementById("getArrCity").value= storedArr[id_kayttaja];
-            document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä: "+ storedUser[id_kayttaja];
+            document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br> "+ storedUser[id_kayttaja];
             modal.style.display="none";
 
 
@@ -365,4 +376,5 @@ xhttp2.onreadystatechange = function () {
 
     };
 }
+
 

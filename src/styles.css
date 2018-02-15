@@ -221,10 +221,12 @@ a:link {
 
 #knownuser {
     float: right;
-    margin-top: 25px;
+    margin-top: 17px;
+    margin-right: 0px;
     font-family: "Open Sans";
     font-weight: 900;
     font-smoothing: antialiased;
+    font-size: 13px;
 }
 
 /*Tästä alaspäin sisäänkirjautumislaatikon stylet*/
@@ -232,10 +234,11 @@ a:link {
 
 .modal {
     display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
+    position: absolute; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 20px; /* Location of the box */
-    left: 0;
+    left: 30%;
+    right: 70%;
     top: 0;
     width: 480px; /* Full width */
     height: 650px; /* Full height */
