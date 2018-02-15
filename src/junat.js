@@ -108,7 +108,7 @@ function getFile() {
                     //tulostetaan vain departures
                     // Koska ollaan vieläkin for-loppin sisällä, saadaan luotua jokaiselle halutulle matkalle oma DIVi, johon säädetään visibility toggle
                     if (result.timeTableRows[i].type === "DEPARTURE") {
-                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime + " Matkan kesto: " + tripTime + "<div>";
+                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " | " + " Lähtöaika: " +  deptTime + " | " + " Saapumisaika: " + arrTime + " | " + " Matkan kesto: " + tripTime + "<div>";
 
                         // Tehdään uusi for-loop, jonka avulla saadaan jokaista matkaa varten jokaisen välipysähdyksen. TUlostetaan lähtöaika ja paikka.
                         for (var k = 0; k <= index; k++) {
@@ -246,12 +246,38 @@ function check() {
                document.getElementById("getDepCity").innerHTML = storedDept[id_kayttaja];
                document.getElementById("getArrCity").innerHTML = storedArr[id_kayttaja];
 
+
         } else {
             alert('ERROR.');
         }
 
-
 }
+
+//Luotu erillinen kirjautumis-popup-ikkuna, joka sulkeutuu kun kirjaudutaan sisään @Outi @Tiina
+var modal = document.getElementById('modal');
+    var btn = document.getElementById('loginbutton');
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick=function() {
+        modal.style.display="block";
+
+    }
+
+    login_btn.onclick=function() {
+        modal.style.display="none";
+    }
+
+    span.onclick=function() {
+        modal.style.display="none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
 
 // Käytetään tätä pysäkkien piilottamiseen! @Renne
 function toggleStopsVisibility(event) {

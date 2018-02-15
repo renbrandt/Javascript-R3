@@ -11,13 +11,41 @@
 
 
 <body>
-<nav><img src="https://uploads-ssl.webflow.com/58e5f3f8d26a849c4569f248/58e5f3f8d26a849c4569f2f7_Academy_250x50%20footer.png">
-<ul>
-    <li><a href="#" onClick="window.open('jumpherelogin.html','loginpage','resizable,height=800,width=540'); return false;">Kirjaudu sisään</a></li>
-</ul>
+<!--Navigaatiolinkit -->
+<nav>
+    <img src="https://uploads-ssl.webflow.com/58e5f3f8d26a849c4569f248/58e5f3f8d26a849c4569f2f7_Academy_250x50%20footer.png">
+<!--<ul>
+    <li id ="link1"><a href="#" onClick="window.open('jumpherelogin.html','loginpage','resizable,height=800,width=540'); return false;">Kirjaudu sisään</a></li>
+    <li id="link2"><a href="junat.html">Kirjaudu ulos</a></li>
+</ul>-->
+
 </nav>
 
+<!--Sisäänkirjautumistoiminto-->
 <div id="MainContent">
+
+    <button id ="loginbutton">Kirjaudu sisään</button>
+    <div class="modal" id = "modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p><div class="title1">Rekisteröidy</div>
+            <form id ="register-form"></form>
+            <input id="name1" type="text" placeholder="Käyttäjätunnus"/>
+            <input id= "pw" type="password" placeholder="Salasana"/>
+            <input id="rgstr_btn" type="submit" value="Rekisteröidy" onClick="store()"/>
+
+
+            <div class="already">Oletko jo käyttäjä?</a></div>
+
+            <div class="title2">Kirjaudu sisään</div>
+            <form id ="login-form"></form>
+            <input id="userName" type="text" placeholder="Käyttäjätunnus"/>
+            <input id= "userPw" type="password" placeholder="Salasana"/>
+            <input id="login_btn" type="submit" value="Kirjaudu sisään" onClick="check()"/></p>
+        </div>
+    </div>
+
+
     <div id="search">
         <div id="from">
             <input type="text" id="getDepCity" list="depoptions" placeholder="Mistä">
@@ -62,8 +90,8 @@
     </datalist>
 
         </div>
-    <input type="text" placeholder="Syötä lähtöaika hh:mm" id="setTime">
-    <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></br>
+        <div> <input type="text" placeholder="Syötä lähtöaika hh:mm" id="setTime"></div>
+        <div> <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></div></br>
 
     </div>
 

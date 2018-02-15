@@ -25,13 +25,16 @@ a {
 }
 
 .content:before {
+    display: none;
+    padding-top: 100px;
+    overflow: auto;
     content: "";
     position: fixed;
     left: 0;
     right: 0;
     top: 0;
     bottom: 0;
-    z-index: -1;
+    z-index: 1;
     display: block;
     background-color: black;
     background-image: url("https://cdn.stocksnap.io/img-thumbs/960w/IL1H0KQY9W.jpg");
