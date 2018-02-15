@@ -200,7 +200,7 @@ function indexSearch(result) {
     console.log(localStorage.getItem("usernameArray"));
     console.log(localStorage.getItem("pwArray"));
     console.log(localStorage.getItem("userDeptStation"));
-    console.log(localStorage.getItem("userArrStation");
+    console.log(localStorage.getItem("userArrStation"));
 
 }
 
