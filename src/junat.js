@@ -198,7 +198,7 @@ function getFile() {
 
                     // Muutetaan käyttäjän säätämät asemat ja tallenetaan ne hänen henkilökohtaisiin taulukoihin. Näiden avulla sisäänkirjautuessa
                     //käyttäjä saa suoraan viimeisimmän haun selaimelleen.
-
+                    if (login_id ==1 ){
                     var tempTableDept = JSON.parse(localStorage.getItem('userDeptStation'));
                     var tempTableArr = JSON.parse(localStorage.getItem("userArrStation"));
 
@@ -208,7 +208,7 @@ function getFile() {
                     tempTableArr.splice(id_kayttaja, 1, arrstation);
                     localStorage.setItem("userDeptStation", JSON.stringify(tempTableDept));
                     localStorage.setItem("userArrStation", JSON.stringify(tempTableArr));
-
+                    }
 
                 //Tulostetaan viimein kasattu data (Eli iso määrä divejä) html-sivulle.
                         document.getElementById("list").innerHTML = timetable;
@@ -274,6 +274,7 @@ function checkInNewAccount() {
     document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br>"+ storedNames[id_kayttaja];
     document.getElementById("loginbutton").style.visibility="hidden";
     document.getElementById("logoutbutton").style.visibility="visible";
+    login_id=1;
 
 }
 // Sisäänkirjautuminen. Tarkistetaan löytyykö syötetty käyttäjätunnust&salasana-pari localstoragelta.
@@ -316,11 +317,11 @@ function check() {
             document.getElementById("getArrCity").value= storedArr[id_kayttaja];
             document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br> "+ storedUser[id_kayttaja];
             modal.style.display="none";
+            login_id=1;
 
 
         } else {
-            alert('ERROR.');
-            console.log("EIPÄ ONNISTUNU");
+            alert('ERROR: Väärä käyttäjätunnus tai salasana');
         }
 }
 
@@ -329,6 +330,7 @@ function check() {
 var modal = document.getElementById('modal');
     var btn = document.getElementById('loginbutton');
     var span = document.getElementsByClassName("close")[0];
+    var lubtn = document.getElementById("logoutbutton");
 
     btn.onclick=function() {
         modal.style.display="block";
@@ -336,9 +338,9 @@ var modal = document.getElementById('modal');
     }
 
     login_btn.onclick=function() {
+        document.document.getElementById('loginbutton').style.display="none";
+        document.document.getElementById("logoutbutton").style.display="block";
         check();
-        document.getElementById("loginbutton").style.visibility="hidden";
-        document.getElementById("logoutbutton").style.visibility="visible";
     }
 
     span.onclick=function() {
@@ -350,6 +352,13 @@ var modal = document.getElementById('modal');
             modal.style.display = "none";
         }
     }
+
+lubtn.onclick=function() {
+        login_id=0;
+        id_kayttaja="";
+    document.document.getElementById('loginbutton').style.display="block";
+    document.document.getElementById("logoutbutton").style.display="none";
+}
 
 
 
@@ -383,6 +392,6 @@ xhttp2.onreadystatechange = function () {
     };
 }
 
-document.getElementById("logoutbutton").style.visibility="hidden";
+
 
 
