@@ -4,7 +4,8 @@ var timetable = "";
 var depstation = "";
 var arrstation = "";
 var id_kayttaja = "";
-//Testailua varten välillä tyhjennetään localStorage
+//Testailua varten välillä tyhjennetään localStora
+
 
 
 //ns. Pääfunktio, jonka avulla haetaan data internetistä. @Tiina & @Renne
@@ -12,6 +13,67 @@ function getFile() {
     //napataan käyttäjän syöttämät lähtö- ja määränpääasemat HTML-formista.
     depstation = document.getElementById("getDepCity").value;
     arrstation = document.getElementById("getArrCity").value;
+
+    //muutetaan käyttäjän syöttämästä asemasta station short code:
+    if (depstation === "Helsinki"){
+        depstation = "HKI"
+    } else if (depstation === "Hämeenlinna"){
+        depstation = "HL"
+    } else if (depstation === "Jyväskylä"){
+        depstation = "JY"
+    } else if (depstation === "Kouvola") {
+        depstation = "KV"
+    } else if (depstation === "Lahti"){
+        depstation = "LH"
+    } else if (depstation === "Lappeenranta") {
+        depstation = "LR"
+    }  else if (depstation === "Mikkeli") {
+        depstation = "MI"
+    }  else if (depstation === "Oulu") {
+        depstation = "OL"
+    }  else if (depstation === "Riihimäki") {
+        depstation = "RI"
+    }  else if (depstation === "Rovaniemi") {
+        depstation = "ROI"
+    }  else if (depstation === "Tampere") {
+        depstation = "TPE"
+    }  else if (depstation === "Tikkurila") {
+        depstation = "TKL"
+    }  else if (depstation === "Turku") {
+        depstation = "TKU"
+    }  else if (depstation === "Vaasa") {
+        depstation = "VS"
+    }
+
+    if (arrstation === "Helsinki"){
+        arrstation = "HKI"
+    } else if (arrstation === "Hämeenlinna"){
+        arrstation = "HL"
+    } else if (arrstation === "Jyväskylä"){
+        arrstation = "JY"
+    } else if (arrstation === "Kouvola") {
+        arrstation = "KV"
+    } else if (arrstation === "Lahti"){
+        arrstation = "LH"
+    } else if (arrstation === "Lappeenranta") {
+        arrstation = "LR"
+    }  else if (depstation === "Mikkeli") {
+        arrstation = "MI"
+    }  else if (arrstation === "Oulu") {
+        arrstation = "OL"
+    }  else if (arrstation === "Riihimäki") {
+        arrstation = "RI"
+    }  else if (arrstation === "Rovaniemi") {
+        arrstation = "ROI"
+    }  else if (arrstation === "Tampere") {
+        arrstation = "TPE"
+    }  else if (arrstation === "Tikkurila") {
+        arrstation = "TKL"
+    }  else if (arrstation === "Turku") {
+        arrstation = "TKU"
+    }  else if (arrstation === "Vaasa") {
+        arrstation = "VS"
+    }
 
     //Haetaan vain näiden kahden pisteen välillä kulkevat junat URLIn kanssa kikkaillen
     xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/' + depstation + '/' + arrstation + '/', true);
@@ -41,6 +103,7 @@ function getFile() {
 
             var userSetTime;
             var timeElementValue = document.getElementById("setTime").value;
+
             var pattern = new RegExp("[0-2]\\d:[0-5]\\d");
             if (pattern.test(timeElementValue)) {
                 userSetTime = new Date(Date.now());
@@ -49,7 +112,6 @@ function getFile() {
             } else {
                 userSetTime = Date.now();
                 var pvm = new Date(userSetTime);
-                document.getElementById("setTime").value = pvm.getHours() + ":" + pvm.getMinutes();
             }
             /* Alla käydään läpi saatu ulkoinen data. For loop käy datan läpi, var result antaa
             datalle indeksin, muut hakevat niiden kuvaamia arvoja datasta.*/
@@ -187,7 +249,7 @@ function indexSearch(result) {
         }
         usernameArray.push(username);
         pwArray.push(pw);
-        userDeptStation.push("HKI");
+        userDeptStation.push("");
         userArrStation.push("");
         localStorage.setItem("userDeptStation", JSON.stringify(userDeptStation));
         localStorage.setItem("usernameArray", JSON.stringify(usernameArray));
@@ -243,8 +305,8 @@ function check() {
             alert('ERROR.');
             console.log("EIPÄ ONNISTUNU");
         }
-
 }
+
 
 //Luotu erillinen kirjautumis-popup-ikkuna, joka sulkeutuu kun kirjaudutaan sisään @Outi @Tiina
 var modal = document.getElementById('modal');
