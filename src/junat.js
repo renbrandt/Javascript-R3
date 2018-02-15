@@ -151,7 +151,7 @@ function getFile() {
                 }
 
                     var arrStation = (result.timeTableRows[index].stationShortCode);
-                    var deptTime = new Date(result.timeTableRows[0].scheduledTime).toLocaleTimeString("fi", {
+                    var deptTime = new Date(result.timeTableRows[arrIndex].scheduledTime).toLocaleTimeString("fi", {
                         hour: '2-digit',
                         minute: '2-digit',
                         hour12: false,
@@ -165,7 +165,7 @@ function getFile() {
                     });
 
                     /* Muutetaan lähtö- ja saapumisaika millisekunteiksi, jotta saadaan laskettua matkan kesto!  Tiina lisäsi nämä. */
-                    var deptTimeMS = Date.parse(result.timeTableRows[0].scheduledTime);
+                    var deptTimeMS = Date.parse(result.timeTableRows[arrIndex].scheduledTime);
                     var arrTimeMS = Date.parse(result.timeTableRows[index].scheduledTime);
                     var triptimeMS = arrTimeMS - deptTimeMS;
 
@@ -174,7 +174,7 @@ function getFile() {
                     // Hoidetaan datan tulostaminen InnerHTML:ään.
                     //tulostetaan vain departures
                     // Koska ollaan vieläkin for-loppin sisällä, saadaan luotua jokaiselle halutulle matkalle oma DIVi, johon säädetään visibility toggle
-                    if (result.timeTableRows[i].type === "DEPARTURE") {
+                    if (result.timeTableRows[i].type === "DEPARTURE" && result.trainType!="AE") {
                         timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " | " + " Lähtöaika: " +  deptTime + " | " + " Saapumisaika: " + arrTime + " | " + " Matkan kesto: " + tripTime + "<div>";
 
                         // Tehdään uusi for-loop, jonka avulla saadaan jokaista matkaa varten jokaisen välipysähdyksen. TUlostetaan lähtöaika ja paikka.
