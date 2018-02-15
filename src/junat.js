@@ -6,6 +6,7 @@ var timetable = "";
 var depstation = "";
 var arrstation = "";
 var id_kayttaja = "";
+var login_id = 0;
 //Testailua varten välillä tyhjennetään localStora
 
 
@@ -267,6 +268,8 @@ function checkInNewAccount() {
     var storedNames = JSON.parse(localStorage.getItem('usernameArray'));
     id_kayttaja=storedNames.length-1;
     document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br>"+ storedNames[id_kayttaja];
+    document.getElementById("loginbutton").style.visibility="hidden";
+    document.getElementById("logoutbutton").style.visibility="visible";
 
 }
 // Sisäänkirjautuminen. Tarkistetaan löytyykö syötetty käyttäjätunnust&salasana-pari localstoragelta.
@@ -292,6 +295,7 @@ function check() {
         if (userName == storedNames[i] && userPw == storedPws[i]) {
             valid = i;
             id_kayttaja=i;
+            login_id=1;
             break;
         }
     }
@@ -329,6 +333,8 @@ var modal = document.getElementById('modal');
 
     login_btn.onclick=function() {
         check();
+        document.getElementById("loginbutton").style.visibility="hidden";
+        document.getElementById("logoutbutton").style.visibility="visible";
     }
 
     span.onclick=function() {
@@ -353,5 +359,7 @@ function toggleStopsVisibility(event) {
     }
 }
 
+
+document.getElementById("logoutbutton").style.visibility="hidden";
 
 
