@@ -210,8 +210,6 @@ function check() {
         //  Haetaan tallennetut rekisteröityneet henkilöt localstoragelta
         var storedNames = JSON.parse(localStorage.getItem('usernameArray'));
         var storedPws = JSON.parse(localStorage.getItem('pwArray'));
-        var storedDept = JSON.parse(localStorage.getItem('userDeptStation'));
-        var storedArr = JSON.parse(localStorage.getItem("userArrStation"));
 
         // Luodaan muuttuja, jota käytetään hyväksi sisäänkirjautumisen onnistumisen tunnistamiseksi
         var valid = -1;
@@ -243,8 +241,7 @@ function check() {
                // console.log(JSON.parse(localStorage.getItem("userDeptStation"))[id_kayttaja]);
                // console.log(JSON.parse(localStorage.getItem("pwArray")));
                // console.log(JSON.parse(localStorage.getItem("usernameArray")));
-               document.getElementById("getDepCity").innerHTML = storedDept[id_kayttaja];
-               document.getElementById("getArrCity").innerHTML = storedArr[id_kayttaja];
+
             modal.style.display="none";
 
 
@@ -267,7 +264,11 @@ var modal = document.getElementById('modal');
 
     login_btn.onclick=function() {
         check();
+        var storedDept = JSON.parse(localStorage.getItem('userDeptStation'));
+        var storedArr = JSON.parse(localStorage.getItem("userArrStation"));
 
+        document.getElementById("getDepCity").innerHTML = storedDept[id_kayttaja];
+        document.getElementById("getArrCity").innerHTML = storedArr[id_kayttaja];
     }
 
     span.onclick=function() {
