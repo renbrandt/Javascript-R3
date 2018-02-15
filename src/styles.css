@@ -18,7 +18,7 @@ body {
     bottom: 0;
     top: 0;
     display: block;
-    z-index: -1;
+    z-index: 1;
     width: 100%;
     height: 100%;
     margin-top: 100px;
@@ -33,7 +33,7 @@ body {
     left: 0;
     right: 0;
     width: 75%;
-    height: 80%;
+    height: 65%;
     margin: auto auto;
     padding: 40px;
     text-align: center;
