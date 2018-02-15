@@ -1,19 +1,24 @@
+// esitellään toiminnan kannalta tarvittavia muuttujia. Näihin asetetaan arvoja functioiden sisällä
 var xhttp = new XMLHttpRequest();
 var timetable = "";
 var depstation = "";
 var arrstation = "";
 var id_kayttaja = "";
 
+//ns. Pääfunktio, jonka avulla haetaan data internetistä. @Tiina & @Renne
 function getFile() {
+    //napataan käyttäjän syöttämät lähtö- ja määränpääasemat HTML-formista.
     depstation = document.getElementById("getDepCity").value;
     arrstation = document.getElementById("getArrCity").value;
+
+    //Haetaan vain näiden kahden pisteen välillä kulkevat junat URLIn kanssa kikkaillen
     xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/' + depstation + '/' + arrstation + '/', true);
     //limit loppuosa rajoittaa näytettävät yhteydet viiteen!
     xhttp.send(null);
 
 
     xhttp.onreadystatechange = function () {
-        /* Lasketaan millisekunteista tunnit ja minuutit */
+        /* Lasketaan millisekunteista tunnit ja minuutit, jotta saadaan näytettyä matkan kesto @Tiina*/
         function msToTime(triptimeMS) {
             var triptimeMS = arrTimeMS - deptTimeMS;
             var secs = Math.floor(triptimeMS / 1000);
@@ -30,7 +35,7 @@ function getFile() {
 
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-
+            //napataan vastaanotettu jason ja käännetään se helpommin käsiteltävään muotoon.
             var trains = JSON.parse(xhttp.responseText);
 
             var userSetTime;
@@ -98,10 +103,13 @@ function getFile() {
 
                     var tripTime = msToTime();
 
-
-                    if (result.timeTableRows[i].type === "DEPARTURE") { //tulostetaan vain departures
+                    // Hoidetaan datan tulostaminen InnerHTML:ään.
+                    //tulostetaan vain departures
+                    // Koska ollaan vieläkin for-loppin sisällä, saadaan luotua jokaiselle halutulle matkalle oma DIVi, johon säädetään visibility toggle
+                    if (result.timeTableRows[i].type === "DEPARTURE") {
                         timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime + " Matkan kesto: " + tripTime + "<div>";
 
+                        // Tehdään uusi for-loop, jonka avulla saadaan jokaista matkaa varten jokaisen välipysähdyksen. TUlostetaan lähtöaika ja paikka.
                         for (var k = 0; k <= index; k++) {
                             var arrTimeStop = new Date(result.timeTableRows[k].scheduledTime).toLocaleTimeString("fi", {
                                 hour: '2-digit',
@@ -112,18 +120,18 @@ function getFile() {
                                 timetable = timetable + "<div class=\"stops\">" + result.timeTableRows[k].stationShortCode + " - " + arrTimeStop + "</div>";
                             }
                         }
+
+                        //suljetaan kaikki sisältö divien sisälle, jotta niiden ksäittely on helpompaa
                         timetable = timetable + "</div></div>";
                     }
 
 
-
+                    // Muutetaan käyttäjän säätämät asemat ja tallenetaan ne hänen henkilökohtaisiin taulukoihin. Näiden avulla sisäänkirjautuessa
+                    //käyttäjä saa suoraan viimeisimmän haun selaimelleen.
                     userDeptStation.splice(id_kayttaja, 1, depstation);
                     localStorage.setItem("userDeptStation", JSON.stringify(userDeptStation));
 
-
-
-                    //userDeptStation.splice(id_kayttaja+1, 1);
-
+                        //Tulostetaan viimein kasattu data (Eli iso määrä divejä) html-sivulle.
                         document.getElementById("list").innerHTML = timetable;
 
 
@@ -135,11 +143,12 @@ function getFile() {
 
         }
         ;
+        // Tyhjennetään datataulukko aina kun kutsutaan uutta dataa.
         timetable = " ";
 
 }
 
-// Renne koodas Tiinan kanssa.
+// haetaan päätyaseman indeksi json-taulukosta, jotta voidaan rajoittaa mottako asemaa näytetään. @Renne & @Tiina
 function indexSearch(result) {
     for (var j = 0; j < result.timeTableRows.length; j++) {
         var arriIndex = result.timeTableRows[j].stationShortCode;
@@ -150,13 +159,13 @@ function indexSearch(result) {
 }
 
 
-// Name and Password from the register-form
+// Tehdään käyttäjätilejä varten useampi taulukko. Username, password ja tarvittava data.
     var usernameArray = [];
     var pwArray =[];
     var userDeptStation =[];
     //var userArrStation = [];
 
-    // storing input from register-form
+    // Rekisteröityminen tapahtuu tämän funktion avulla. Lisätään ja tallenetaan localstoragelle käyttäjän tiedot neljälle eri taulukolle, samalla indeksille
     function store() {
         var username = document.getElementById('name1').value;
         var pw = document.getElementById('pw').value;
@@ -173,21 +182,19 @@ function indexSearch(result) {
 
 }
 
-// check if stored data from register-form is equal to entered data in the   login-form
+// Sisäänkirjautuminen. Tarkistetaan löytyykö syötetty käyttäjätunnust&salasana-pari localstoragelta.
 function check() {
 
-        // stored data from the register-form
+        //  Haetaan tallennetut rekisteröityneet henkilöt localstoragelta
         var storedNames = JSON.parse(localStorage.getItem('usernameArray'));
         var storedPws = JSON.parse(localStorage.getItem('pwArray'));
 
-
+        // Luodaan muuttuja, jota käytetään hyväksi sisäänkirjautumisen onnistumisen tunnistamiseksi
         var valid = -1;
 
-//        console.log(storedNames);
-        //console.log(storedPws);
 
 
-    // entered data from the login-form
+    // Haetaan käyttäjän syöttämät arvot login-kentistä
     var userName = document.getElementById('userName').value;
     var userPw = document.getElementById('userPw').value;
 
@@ -195,10 +202,10 @@ function check() {
         console.log(userName);
         //console.log(storedPws);
 
-
+        // Tehdään looppi, joka käy taulukot läpi
         for (i=0; i<storedNames.length;i++) {
 
-        // check if stored data from register-form is equal to data from login form
+        // tarkistetaan että samalla indeksillä sekä käyttäjänimi että salasana ovat samat.
         if (userName == storedNames[i] && userPw == storedPws[i]) {
             valid = i;
             id_kayttaja=i;
@@ -206,7 +213,7 @@ function check() {
         }
     }
 
-
+        // Jos käyttäjätunnarit löytyvät, ilmoitetaan että ollaan paikalla + haetaan localstoragelta datat!
         if (valid != -1) {
             alert('You are logged in now:' + storedNames[valid]);
                 document.getElementById("depoptions").innerHTML = JSON.parse(localStorage.getItem("userDeptStation")[id_kayttaja]).value;
@@ -218,7 +225,7 @@ function check() {
 
 }
 
-
+// Käytetään tätä pysäkkien piilottamiseen! @Renne
 function toggleStopsVisibility(event) {
     var stopsToggle = event.target.firstElementChild;
     if (stopsToggle.style.display === "none") {
