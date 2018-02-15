@@ -194,6 +194,21 @@ a:link {
     margin-top: 0px;
 }
 
+#loginbutton {
+    width: 150px;
+    height: 35px;
+    background-color: green;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 13px;
+}
+
 /*Tästä alaspäin sisäänkirjautumislaatikon stylet*/
 
 
@@ -257,13 +272,13 @@ a:link {
 
 #rgstr_btn {
     color:white;
-    background-color:#66A756;
+    background-color:green;
     cursor: pointer;
 }
 
 #login_btn {
     color:white;
-    background-color:#66A756;
+    background-color:green;
     cursor: pointer;
 }
 
