@@ -161,8 +161,10 @@ ul {
     list-style-type: none;
     float: right;
     margin-right: 0px;
+    display: block;
 
 }
+
 
 a:link {
     background-color: green;
@@ -207,6 +209,14 @@ a:link {
     cursor: pointer;
     border-radius: 4px;
     font-size: 13px;
+}
+
+#knownuser {
+    float: right;
+    margin-top: 25px;
+    font-family: "Open Sans";
+    font-weight: 900;
+    font-smoothing: antialiased;
 }
 
 /*Tästä alaspäin sisäänkirjautumislaatikon stylet*/
