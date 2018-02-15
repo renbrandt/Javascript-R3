@@ -221,10 +221,12 @@ a:link {
 
 #knownuser {
     float: right;
-    margin-top: 25px;
+    margin-top: 17px;
+    margin-right: 0px;
     font-family: "Open Sans";
     font-weight: 900;
     font-smoothing: antialiased;
+    font-size: 13px;
 }
 
 /*Tästä alaspäin sisäänkirjautumislaatikon stylet*/

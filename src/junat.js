@@ -1,3 +1,5 @@
+localStorage.clear();
+
 // esitellään toiminnan kannalta tarvittavia muuttujia. Näihin asetetaan arvoja functioiden sisällä
 var xhttp = new XMLHttpRequest();
 var timetable = "";
@@ -233,7 +235,7 @@ function check() {
             var storedUser = JSON.parse(localStorage.getItem("usernameArray"));
             document.getElementById("getDepCity").value= storedDept[id_kayttaja];
             document.getElementById("getArrCity").value= storedArr[id_kayttaja];
-            document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä: "+ storedUser[id_kayttaja];
+            document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br> "+ storedUser[id_kayttaja];
             modal.style.display="none";
 
 
@@ -279,5 +281,6 @@ function toggleStopsVisibility(event) {
         stopsToggle.style.display = "none";
     }
 }
+
 
 
