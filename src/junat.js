@@ -218,12 +218,38 @@ function check() {
             alert('You are logged in now:' + storedNames[valid]);
                 document.getElementById("depoptions").innerHTML = JSON.parse(localStorage.getItem("userDeptStation")[id_kayttaja]).value;
 
+
         } else {
             alert('ERROR.');
         }
 
-
 }
+
+//Luotu erillinen kirjautumis-popup-ikkuna, joka sulkeutuu kun kirjaudutaan sisään @Outi @Tiina
+var modal = document.getElementById('modal');
+    var btn = document.getElementById('loginbutton');
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick=function() {
+        modal.style.display="block";
+
+    }
+
+    login_btn.onclick=function() {
+        modal.style.display="none";
+    }
+
+    span.onclick=function() {
+        modal.style.display="none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
 
 // Käytetään tätä pysäkkien piilottamiseen! @Renne
 function toggleStopsVisibility(event) {
