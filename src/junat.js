@@ -393,6 +393,8 @@ xhttp2.onreadystatechange = function () {
     };
 }
 
+//Defaultina "kirjaudu ulos" -nappula piilossa
+
 document.getElementById("logoutbutton").style.visibility = "hidden";
 
 
