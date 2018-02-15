@@ -4,6 +4,8 @@ var timetable = "";
 var depstation = "";
 var arrstation = "";
 var id_kayttaja = "";
+var shortCode = [];
+var longCode = [];
 //Testailua varten välillä tyhjennetään localStora
 
 
@@ -180,7 +182,9 @@ function getFile() {
                                 hour12: false
                             });
                             if (result.timeTableRows[k].type === "DEPARTURE") {
-                                timetable = timetable + "<div class=\"stops\">" + result.timeTableRows[k].stationShortCode + " - " + arrTimeStop + "</div>";
+                                var indexOfShort = shortCode.indexOf(result.timeTableRows[k].stationShortCode);
+                                var station = longCode[indexOfShort-1];
+                                timetable = timetable + "<div class=\"stops\">" + station + " - " + arrTimeStop + "</div>";
                             }
                         }
 
@@ -342,4 +346,23 @@ function toggleStopsVisibility(event) {
     }
 }
 
+var xhttp2 = new XMLHttpRequest();
+xhttp2.open("GET", 'https://rata.digitraffic.fi/api/v1/metadata/stations', true);
+xhttp2.send(null);
+
+xhttp2.onreadystatechange = function () {
+
+    if (xhttp2.readyState == 4 && xhttp2.status == 200) {
+
+        var stationInfo = JSON.parse(xhttp2.responseText);
+
+        for(var i = 0 ; i < stationInfo.length ; ++i) {
+            var stations = stationInfo[i];
+            console.log(stations)
+            shortCode.push(stations.stationShortCode);
+            longCode.push(stations.stationName);
+        }
+
+    };
+}
 
