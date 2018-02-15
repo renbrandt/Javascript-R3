@@ -338,8 +338,6 @@ var modal = document.getElementById('modal');
     }
 
     login_btn.onclick=function() {
-        document.document.getElementById('loginbutton').style.display="none";
-        document.document.getElementById("logoutbutton").style.display="block";
         check();
     }
 
@@ -356,8 +354,8 @@ var modal = document.getElementById('modal');
 lubtn.onclick=function() {
         login_id=0;
         id_kayttaja="";
-    document.document.getElementById('loginbutton').style.display="block";
-    document.document.getElementById("logoutbutton").style.display="none";
+    document.getElementById("getDepCity").value= "";
+    document.getElementById("getArrCity").value= "";
 }
 
 
@@ -384,7 +382,6 @@ xhttp2.onreadystatechange = function () {
 
         for(var i = 0 ; i < stationInfo.length ; ++i) {
             var stations = stationInfo[i];
-            console.log(stations)
             shortCode.push(stations.stationShortCode);
             longCode.push(stations.stationName);
         }
