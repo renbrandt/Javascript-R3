@@ -133,6 +133,8 @@ function getFile() {
                     var tempTableDept = JSON.parse(localStorage.getItem('userDeptStation'));
                     var tempTableArr = JSON.parse(localStorage.getItem("userArrStation"));
 
+
+
                     tempTableDept.splice(id_kayttaja, 1, depstation);
                     tempTableArr.splice(id_kayttaja, 1, arrstation);
                     localStorage.setItem("userDeptStation", JSON.stringify(tempTableDept));
