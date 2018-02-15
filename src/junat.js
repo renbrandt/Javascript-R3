@@ -255,6 +255,8 @@ function indexSearch(result) {
         localStorage.setItem("usernameArray", JSON.stringify(usernameArray));
         localStorage.setItem("pwArray", JSON.stringify(pwArray));
         localStorage.setItem("userArrStation", JSON.stringify(userArrStation));
+        document.getElementById('name1').value = "";
+        document.getElementById('pw').value = "";
 
 
 }
