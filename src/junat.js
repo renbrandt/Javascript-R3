@@ -6,12 +6,9 @@ var timetable = "";
 var depstation = "";
 var arrstation = "";
 var id_kayttaja = "";
-<<<<<<< HEAD
 var login_id = 0;
-=======
 var shortCode = [];
 var longCode = [];
->>>>>>> bd60d34a9a65778eb99ef26308ee0a8aae5b4956
 //Testailua varten välillä tyhjennetään localStora
 
 
