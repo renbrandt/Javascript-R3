@@ -124,6 +124,7 @@ function getFile() {
                 var result = trains[i];
 
                 var index = indexSearch(result);
+                var arrIndex = arrIndexSearch(result);
 
                 // jos junan aika on ennen käyttäjän antamaa aikaa niin ei jatketa tämän junan kanssa
                 var scheduledTimeDate = Date.parse(result.timeTableRows[0].scheduledTime);
@@ -174,19 +175,20 @@ function getFile() {
                     //tulostetaan vain departures
                     // Koska ollaan vieläkin for-loppin sisällä, saadaan luotua jokaiselle halutulle matkalle oma DIVi, johon säädetään visibility toggle
                     if (result.timeTableRows[i].type === "DEPARTURE") {
-                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " | " + " Lähtöaika: " +  deptTime + " | " + " Saapumisaika: " + arrTime + " | " + " Matkan kesto: " + tripTime + "<div>";
+                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + "Lähtöaika: " +  deptTime + " | " + " Saapumisaika: " + arrTime +"<div>";
 
                         // Tehdään uusi for-loop, jonka avulla saadaan jokaista matkaa varten jokaisen välipysähdyksen. TUlostetaan lähtöaika ja paikka.
-                        for (var k = 0; k <= index; k++) {
+                        for (var k = 0; k <= 0; k++) {
                             var arrTimeStop = new Date(result.timeTableRows[k].scheduledTime).toLocaleTimeString("fi", {
                                 hour: '2-digit',
                                 minute: '2-digit',
                                 hour12: false
                             });
                             if (result.timeTableRows[k].type === "DEPARTURE") {
-                                var indexOfShort = shortCode.indexOf(result.timeTableRows[k].stationShortCode);
-                                var station = longCode[indexOfShort-1];
-                                timetable = timetable + "<div class=\"stops\">" + station + " - " + arrTimeStop + "</div>";
+                                // Hieno ominaisuus välipysäkeille, mutta ei koskaan valmistunut
+                               // var indexOfShort = shortCode.indexOf(result.timeTableRows[k].stationShortCode);
+                                // var station = longCode[indexOfShort-1];
+                                timetable = timetable + "<div class=\"stops\">" + trainNumber + " - Matkan kesto: " + tripTime + "</div>";
                             }
                         }
 
@@ -231,6 +233,15 @@ function indexSearch(result) {
     for (var j = 0; j < result.timeTableRows.length; j++) {
         var arriIndex = result.timeTableRows[j].stationShortCode;
         if (arriIndex == arrstation) {
+            return j;
+        }
+    }
+}
+
+function arrIndexSearch(result) {
+    for (var j = 0; j < result.timeTableRows.length; j++) {
+        var arriIndex = result.timeTableRows[j].stationShortCode;
+        if (arriIndex == depstation) {
             return j;
         }
     }
@@ -357,7 +368,10 @@ var modal = document.getElementById('modal');
 lubtn.onclick=function() {
         login_id=0;
         id_kayttaja="";
-        timetable = "";
+    document.getElementById("loginbutton").style.visibility = "visible";
+    document.getElementById("logoutbutton").style.visibility = "hidden";
+    document.getElementById("list").innerHTML = "";
+    document.getElementById('knownuser').innerHTML="";
     document.getElementById("getDepCity").value= "";
     document.getElementById("getArrCity").value= "";
 }
@@ -374,7 +388,8 @@ function toggleStopsVisibility(event) {
     }
 }
 
-var xhttp2 = new XMLHttpRequest();
+// Hieno ominaisuus välipysäkeille, mutta ei koskaan valmistunut
+/*var xhttp2 = new XMLHttpRequest();
 xhttp2.open("GET", 'https://rata.digitraffic.fi/api/v1/metadata/stations', true);
 xhttp2.send(null);
 
@@ -391,7 +406,7 @@ xhttp2.onreadystatechange = function () {
         }
 
     };
-}
+}*/
 
 //Defaultina "kirjaudu ulos" -nappula piilossa
 
