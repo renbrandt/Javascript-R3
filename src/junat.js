@@ -195,12 +195,8 @@ function getFile() {
                     var tempTableDept = JSON.parse(localStorage.getItem('userDeptStation'));
                     var tempTableArr = JSON.parse(localStorage.getItem("userArrStation"));
 
-
-                    console.dir(tempTableDept);
-                    console.dir(tempTableArr);
                     tempTableDept.splice(id_kayttaja, 1, depstation);
                     tempTableArr.splice(id_kayttaja, 1, arrstation);
-                    //console.dir(tempTable[id_kayttaja]);
                     localStorage.setItem("userDeptStation", JSON.stringify(tempTableDept));
                     localStorage.setItem("userArrStation", JSON.stringify(tempTableArr));
 
@@ -259,11 +255,6 @@ function indexSearch(result) {
         localStorage.setItem("userArrStation", JSON.stringify(userArrStation));
 
 
-    console.log(localStorage.getItem("usernameArray"));
-    console.log(localStorage.getItem("pwArray"));
-    console.log(localStorage.getItem("userDeptStation"));
-    console.log(localStorage.getItem("userArrStation"));
-
 }
 
 // Sisäänkirjautuminen. Tarkistetaan löytyykö syötetty käyttäjätunnust&salasana-pari localstoragelta.
@@ -281,10 +272,6 @@ function check() {
     // Haetaan käyttäjän syöttämät arvot login-kentistä
     var userName = document.getElementById('userName').value;
     var userPw = document.getElementById('userPw').value;
-
-        console.log(storedNames[0]);
-        console.log(userName);
-        //console.log(storedPws);
 
         // Tehdään looppi, joka käy taulukot läpi
         for (i=0; i<storedNames.length;i++) {
@@ -305,8 +292,10 @@ function check() {
                // console.log(JSON.parse(localStorage.getItem("usernameArray")));
             var storedDept = JSON.parse(localStorage.getItem('userDeptStation'));
             var storedArr = JSON.parse(localStorage.getItem("userArrStation"));
+            var storedUser = JSON.parse(localStorage.getItem("usernameArray"));
             document.getElementById("getDepCity").value= storedDept[id_kayttaja];
             document.getElementById("getArrCity").value= storedArr[id_kayttaja];
+            document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä: "+ storedUser[id_kayttaja];
             modal.style.display="none";
 
 
