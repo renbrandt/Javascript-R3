@@ -243,8 +243,10 @@ function check() {
                // console.log(JSON.parse(localStorage.getItem("usernameArray")));
             var storedDept = JSON.parse(localStorage.getItem('userDeptStation'));
             var storedArr = JSON.parse(localStorage.getItem("userArrStation"));
+            var storedUser = JSON.parse(localStorage.getItem("usernameArray"));
             document.getElementById("getDepCity").value= storedDept[id_kayttaja];
             document.getElementById("getArrCity").value= storedArr[id_kayttaja];
+            document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä: "+ storedUser[id_kayttaja];
             modal.style.display="none";
 
 
