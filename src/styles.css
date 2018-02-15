@@ -172,6 +172,14 @@ a:link {
     border-radius: 4px;
 }
 
+#link1 {
+    float: right;
+}
+
+#link2 {
+    float:left;
+}
+
 #results {
     font-family: "Open Sans";
     text-align: left;
