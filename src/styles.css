@@ -31,7 +31,7 @@ body {
     left: 0;
     right: 0;
     width: 75%;
-    height: 75%;
+    height: 80%;
     margin: auto auto;
     padding: 40px;
     text-align: center;
@@ -72,9 +72,9 @@ body {
 }
 
 #hae {
-    margin-bottom: 40px;
-    margin-top: 0px;
-    margin-right: 50px;
+    margin-bottom: 20px;
+    margin-top: 30px;
+    margin-right: 10px;
     width: 200px;
     height: 50px;
     background-color: green;
@@ -108,7 +108,7 @@ body {
     width: 400px;
     float: left;
     margin-left: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     margin-top: 70px;
     font-size: 16px;
     border-radius: 10px;
@@ -140,7 +140,8 @@ h1 {
 
 .stops {
     border: 1px solid black;
-    padding: 10px;
+    padding: 5px;
+    font-size: 14px;
 }
 
 .trips > div:first-child {
@@ -151,7 +152,7 @@ h1 {
     background-color: black;
     background-color:rgba(255, 255, 255, 0.5);
     border: 1px solid black;
-    padding: 10px;
+    padding: 5px;
 }
 
 ul {
@@ -184,7 +185,11 @@ a:link {
 #results {
     font-family: "Open Sans";
     text-align: left;
-    font-size: 20px;
+    font-size: 17px;
+}
+
+#setTime {
+    margin-top: 0px;
 }
 
 

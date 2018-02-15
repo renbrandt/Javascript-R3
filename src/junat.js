@@ -107,7 +107,7 @@ function getFile() {
                     //tulostetaan vain departures
                     // Koska ollaan vieläkin for-loppin sisällä, saadaan luotua jokaiselle halutulle matkalle oma DIVi, johon säädetään visibility toggle
                     if (result.timeTableRows[i].type === "DEPARTURE") {
-                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " Lähtöaika: " + deptTime + " Saapumisaika: " + arrTime + " Matkan kesto: " + tripTime + "<div>";
+                        timetable = timetable + "<div class=\"trips\" onclick=\"toggleStopsVisibility(event)\">" + trainNumber + " | " + " Lähtöaika: " +  deptTime + " | " + " Saapumisaika: " + arrTime + " | " + " Matkan kesto: " + tripTime + "<div>";
 
                         // Tehdään uusi for-loop, jonka avulla saadaan jokaista matkaa varten jokaisen välipysähdyksen. TUlostetaan lähtöaika ja paikka.
                         for (var k = 0; k <= index; k++) {
