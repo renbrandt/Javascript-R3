@@ -1,4 +1,3 @@
-localStorage.clear();
 
 // esitellään toiminnan kannalta tarvittavia muuttujia. Näihin asetetaan arvoja functioiden sisällä
 var xhttp = new XMLHttpRequest();
@@ -272,6 +271,7 @@ function checkInNewAccount() {
     var storedNames = JSON.parse(localStorage.getItem('usernameArray'));
     id_kayttaja=storedNames.length-1;
     document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br>"+ storedNames[id_kayttaja];
+    //muokattu sisään- ja uloskirjautumisbuttoneja sen mukaan, onko käyttäjä kirjautunut sisään vai ei.
     document.getElementById("loginbutton").style.visibility="hidden";
     document.getElementById("logoutbutton").style.visibility="visible";
     login_id=1;
