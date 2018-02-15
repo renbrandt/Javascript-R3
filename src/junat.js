@@ -5,7 +5,7 @@ var depstation = "";
 var arrstation = "";
 var id_kayttaja = "";
 //Testailua varten välillä tyhjennetään localStorage
-//localStorage.clear();
+
 
 //ns. Pääfunktio, jonka avulla haetaan data internetistä. @Tiina & @Renne
 function getFile() {
@@ -241,7 +241,10 @@ function check() {
                // console.log(JSON.parse(localStorage.getItem("userDeptStation"))[id_kayttaja]);
                // console.log(JSON.parse(localStorage.getItem("pwArray")));
                // console.log(JSON.parse(localStorage.getItem("usernameArray")));
-
+            var storedDept = JSON.parse(localStorage.getItem('userDeptStation'));
+            var storedArr = JSON.parse(localStorage.getItem("userArrStation"));
+            document.getElementById("getDepCity").value= storedDept[id_kayttaja];
+            document.getElementById("getArrCity").value= storedArr[id_kayttaja];
             modal.style.display="none";
 
 
@@ -264,11 +267,6 @@ var modal = document.getElementById('modal');
 
     login_btn.onclick=function() {
         check();
-        var storedDept = JSON.parse(localStorage.getItem('userDeptStation'));
-        var storedArr = JSON.parse(localStorage.getItem("userArrStation"));
-
-        document.getElementById("getDepCity").innerHTML = storedDept[id_kayttaja];
-        document.getElementById("getArrCity").innerHTML = storedArr[id_kayttaja];
     }
 
     span.onclick=function() {
