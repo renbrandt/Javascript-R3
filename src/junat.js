@@ -4,6 +4,8 @@ var timetable = "";
 var depstation = "";
 var arrstation = "";
 var id_kayttaja = "";
+//Testailua varten välillä tyhjennetään localStorage
+//localStorage.clear();
 
 //ns. Pääfunktio, jonka avulla haetaan data internetistä. @Tiina & @Renne
 function getFile() {
@@ -23,7 +25,6 @@ function getFile() {
             var triptimeMS = arrTimeMS - deptTimeMS;
             var secs = Math.floor(triptimeMS / 1000);
             var hours = Math.floor(secs / (60 * 60));
-            console.log(hours);
             var divisor_for_minutes = secs % (60 * 60);
             var minutes = Math.floor(divisor_for_minutes / 60);
             if (minutes < 10) {
@@ -128,10 +129,21 @@ function getFile() {
 
                     // Muutetaan käyttäjän säätämät asemat ja tallenetaan ne hänen henkilökohtaisiin taulukoihin. Näiden avulla sisäänkirjautuessa
                     //käyttäjä saa suoraan viimeisimmän haun selaimelleen.
-                    userDeptStation.splice(id_kayttaja, 1, depstation);
-                    localStorage.setItem("userDeptStation", JSON.stringify(userDeptStation));
 
-                        //Tulostetaan viimein kasattu data (Eli iso määrä divejä) html-sivulle.
+                    var tempTableDept = JSON.parse(localStorage.getItem('userDeptStation'));
+                    var tempTableArr = JSON.parse(localStorage.getItem("userArrStation"));
+
+
+                    console.dir(tempTableDept);
+                    console.dir(tempTableArr);
+                    tempTableDept.splice(id_kayttaja, 1, depstation);
+                    tempTableArr.splice(id_kayttaja, 1, arrstation);
+                    //console.dir(tempTable[id_kayttaja]);
+                    localStorage.setItem("userDeptStation", JSON.stringify(tempTableDept));
+                    localStorage.setItem("userArrStation", JSON.stringify(tempTableArr));
+
+
+                //Tulostetaan viimein kasattu data (Eli iso määrä divejä) html-sivulle.
                         document.getElementById("list").innerHTML = timetable;
 
 
@@ -163,22 +175,32 @@ function indexSearch(result) {
     var usernameArray = [];
     var pwArray =[];
     var userDeptStation =[];
-    //var userArrStation = [];
+    var userArrStation = [];
 
     // Rekisteröityminen tapahtuu tämän funktion avulla. Lisätään ja tallenetaan localstoragelle käyttäjän tiedot neljälle eri taulukolle, samalla indeksille
     function store() {
         var username = document.getElementById('name1').value;
         var pw = document.getElementById('pw').value;
+        if (localStorage.getItem("usernameArray")!= null){
+            usernameArray=JSON.parse(localStorage.getItem("usernameArray"));
+            pwArray=JSON.parse(localStorage.getItem("pwArray"));
+            userDeptStation=JSON.parse(localStorage.getItem("userDeptStation"));
+            userArrStation=JSON.parse(localStorage.getItem("userArrStation"));
+        }
         usernameArray.push(username);
         pwArray.push(pw);
-        userDeptStation.push("");
-        //userArrStation.push("");
+        userDeptStation.push("HKI");
+        userArrStation.push("");
+        localStorage.setItem("userDeptStation", JSON.stringify(userDeptStation));
         localStorage.setItem("usernameArray", JSON.stringify(usernameArray));
         localStorage.setItem("pwArray", JSON.stringify(pwArray));
+        localStorage.setItem("userArrStation", JSON.stringify(userArrStation));
 
 
     console.log(localStorage.getItem("usernameArray"));
     console.log(localStorage.getItem("pwArray"));
+    console.log(localStorage.getItem("userDeptStation"));
+    console.log(localStorage.getItem("userArrStation");
 
 }
 
@@ -188,6 +210,8 @@ function check() {
         //  Haetaan tallennetut rekisteröityneet henkilöt localstoragelta
         var storedNames = JSON.parse(localStorage.getItem('usernameArray'));
         var storedPws = JSON.parse(localStorage.getItem('pwArray'));
+        var storedDept = JSON.parse(localStorage.getItem('userDeptStation'));
+        var storedArr = JSON.parse(localStorage.getItem("userArrStation"));
 
         // Luodaan muuttuja, jota käytetään hyväksi sisäänkirjautumisen onnistumisen tunnistamiseksi
         var valid = -1;
@@ -216,7 +240,11 @@ function check() {
         // Jos käyttäjätunnarit löytyvät, ilmoitetaan että ollaan paikalla + haetaan localstoragelta datat!
         if (valid != -1) {
             alert('You are logged in now:' + storedNames[valid]);
-                document.getElementById("depoptions").innerHTML = JSON.parse(localStorage.getItem("userDeptStation")[id_kayttaja]).value;
+               // console.log(JSON.parse(localStorage.getItem("userDeptStation"))[id_kayttaja]);
+               // console.log(JSON.parse(localStorage.getItem("pwArray")));
+               // console.log(JSON.parse(localStorage.getItem("usernameArray")));
+               document.getElementById("getDepCity").innerHTML = storedDept[id_kayttaja];
+               document.getElementById("getArrCity").innerHTML = storedArr[id_kayttaja];
 
         } else {
             alert('ERROR.');
