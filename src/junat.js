@@ -12,13 +12,13 @@ var longCode = [];
 
 
 
-//ns. Pääfunktio, jonka avulla haetaan data internetistä. @Tiina & @Renne
+//ns. Pääfunktio, jonka avulla haetaan data internetistä.
 function getFile() {
     //napataan käyttäjän syöttämät lähtö- ja määränpääasemat HTML-formista.
     depstation = document.getElementById("getDepCity").value;
     arrstation = document.getElementById("getArrCity").value;
 
-    //muutetaan käyttäjän syöttämästä asemasta station short code:
+    //muutetaan käyttäjän syöttämästä asemasta station short code: @Tiina
     if (depstation === "Helsinki"){
         depstation = "HKI"
     } else if (depstation === "Hämeenlinna"){
@@ -79,9 +79,8 @@ function getFile() {
         arrstation = "VS"
     }
 
-    //Haetaan vain näiden kahden pisteen välillä kulkevat junat URLIn kanssa kikkaillen
+    //Haetaan vain näiden kahden pisteen välillä kulkevat junat URLIn kanssa kikkaillen @Tiina @Renne
     xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/' + depstation + '/' + arrstation + '/', true);
-    //limit loppuosa rajoittaa näytettävät yhteydet viiteen!
     xhttp.send(null);
 
 
@@ -102,7 +101,7 @@ function getFile() {
 
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
-            //napataan vastaanotettu jason ja käännetään se helpommin käsiteltävään muotoon.
+            //napataan vastaanotettu jason ja käännetään se helpommin käsiteltävään muotoon. @Tiina
             var trains = JSON.parse(xhttp.responseText);
 
             var userSetTime;
@@ -118,7 +117,7 @@ function getFile() {
                 var pvm = new Date(userSetTime);
             }
             /* Alla käydään läpi saatu ulkoinen data. For loop käy datan läpi, var result antaa
-            datalle indeksin, muut hakevat niiden kuvaamia arvoja datasta.*/
+            datalle indeksin, muut hakevat niiden kuvaamia arvoja datasta. @Johanna @Tiina @Renne */
 
             for (var i = 0; trains.length; i++) {
                 var result = trains[i];
@@ -130,7 +129,7 @@ function getFile() {
                 var scheduledTimeDate = Date.parse(result.timeTableRows[0].scheduledTime);
                 if (scheduledTimeDate < userSetTime) continue;
 
-                /* Alla erotellaan onko lähi- vai kaukojuna ja lisätään junan tyyppi/ID. Tiina lisäsi nämä. */
+                /* Alla erotellaan onko lähi- vai kaukojuna ja lisätään junan tyyppi/ID. @Tiina  */
 
                 var trainCategory = result.trainCategory;
                 if (trainCategory === "Long-distance") {
@@ -164,14 +163,14 @@ function getFile() {
                         hour12: false
                     });
 
-                    /* Muutetaan lähtö- ja saapumisaika millisekunteiksi, jotta saadaan laskettua matkan kesto!  Tiina lisäsi nämä. */
+                    /* Muutetaan lähtö- ja saapumisaika millisekunteiksi, jotta saadaan laskettua matkan kesto!  @Tiina  */
                     var deptTimeMS = Date.parse(result.timeTableRows[arrIndex].scheduledTime);
                     var arrTimeMS = Date.parse(result.timeTableRows[index].scheduledTime);
                     var triptimeMS = arrTimeMS - deptTimeMS;
 
                     var tripTime = msToTime();
 
-                    // Hoidetaan datan tulostaminen InnerHTML:ään.
+                // Hoidetaan datan tulostaminen InnerHTML:ään. @Renne @Johanna @Tiina @Outi
                     //tulostetaan vain departures
                     // Koska ollaan vieläkin for-loppin sisällä, saadaan luotua jokaiselle halutulle matkalle oma DIVi, johon säädetään visibility toggle
                     if (result.timeTableRows[i].type === "DEPARTURE" && result.trainType!="AE") {
@@ -197,7 +196,7 @@ function getFile() {
 
 
                     // Muutetaan käyttäjän säätämät asemat ja tallenetaan ne hänen henkilökohtaisiin taulukoihin. Näiden avulla sisäänkirjautuessa
-                    //käyttäjä saa suoraan viimeisimmän haun selaimelleen.
+                    //käyttäjä saa suoraan viimeisimmän haun selaimelleen. @Renne @Johanna @Outi
                     if (login_id ==1 ){
                     var tempTableDept = JSON.parse(localStorage.getItem('userDeptStation'));
                     var tempTableArr = JSON.parse(localStorage.getItem("userArrStation"));
@@ -222,7 +221,7 @@ function getFile() {
 
         }
         ;
-        // Tyhjennetään datataulukko aina kun kutsutaan uutta dataa.
+        // Tyhjennetään datataulukko aina kun kutsutaan uutta dataa. @Tiina
         timetable = " ";
 
 }
@@ -237,6 +236,7 @@ function indexSearch(result) {
     }
 }
 
+//Haetaan lähtöaseman indeksi @Renne @Johanna
 function arrIndexSearch(result) {
     for (var j = 0; j < result.timeTableRows.length; j++) {
         var arriIndex = result.timeTableRows[j].stationShortCode;
@@ -247,13 +247,14 @@ function arrIndexSearch(result) {
 }
 
 
-// Tehdään käyttäjätilejä varten useampi taulukko. Username, password ja tarvittava data.
+// Tehdään käyttäjätilejä varten useampi taulukko. Username, password ja tarvittava data. @Outi @Johanna @Renne
     var usernameArray = [];
     var pwArray =[];
     var userDeptStation =[];
     var userArrStation = [];
 
     // Rekisteröityminen tapahtuu tämän funktion avulla. Lisätään ja tallenetaan localstoragelle käyttäjän tiedot neljälle eri taulukolle, samalla indeksille
+    // @Outi @Johanna @Renne
     function store() {
         var username = document.getElementById('name1').value;
         var pw = document.getElementById('pw').value;
@@ -276,18 +277,21 @@ function arrIndexSearch(result) {
         checkInNewAccount();
 }
 
+
+//Käyettään tätä kirjautumiseen suoraan rekisteröitymisen yhteydessä
+// @Renne @Johanna
 function checkInNewAccount() {
     modal.style.display="none";
     var storedNames = JSON.parse(localStorage.getItem('usernameArray'));
     id_kayttaja=storedNames.length-1;
     document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br>"+ storedNames[id_kayttaja];
-    //muokattu sisään- ja uloskirjautumisbuttoneja sen mukaan, onko käyttäjä kirjautunut sisään vai ei.
+    //muokattu sisään- ja uloskirjautumisbuttoneja sen mukaan, onko käyttäjä kirjautunut sisään vai ei. @Outi
     document.getElementById("loginbutton").style.visibility="hidden";
     document.getElementById("logoutbutton").style.visibility="visible";
     login_id=1;
 
 }
-// Sisäänkirjautuminen. Tarkistetaan löytyykö syötetty käyttäjätunnust&salasana-pari localstoragelta.
+// Sisäänkirjautuminen. Tarkistetaan löytyykö syötetty käyttäjätunnust&salasana-pari localstoragelta. @Outi @Johanna @Renne
 function check() {
 
         //  Haetaan tallennetut rekisteröityneet henkilöt localstoragelta
@@ -315,7 +319,7 @@ function check() {
         }
     }
 
-        // Jos käyttäjätunnarit löytyvät, ilmoitetaan että ollaan paikalla + haetaan localstoragelta datat!
+        // Jos käyttäjätunnarit löytyvät, ilmoitetaan että ollaan paikalla + haetaan localstoragelta datat! @Johanna @Renne
         if (valid != -1) {
                // console.log(JSON.parse(localStorage.getItem("userDeptStation"))[id_kayttaja]);
                // console.log(JSON.parse(localStorage.getItem("pwArray")));
@@ -364,6 +368,7 @@ var modal = document.getElementById('modal');
         }
     }
 
+// @Renne @Johanna
 lubtn.onclick=function() {
         login_id=0;
         id_kayttaja="";
@@ -387,6 +392,8 @@ function toggleStopsVisibility(event) {
     }
 }
 
+
+// Haetaan pysäkkien nimet shortchoden lisäksi @Tiina
 var xhttp2 = new XMLHttpRequest();
 xhttp2.open("GET", 'https://rata.digitraffic.fi/api/v1/metadata/stations', true);
 xhttp2.send(null);
@@ -397,6 +404,7 @@ xhttp2.onreadystatechange = function () {
 
         var stationInfo = JSON.parse(xhttp2.responseText);
 
+        // Lisätään taulukoihin kaikki arvot, jotta voidaan hakea koodille pitkä nimi @Renne @Tiina
         for(var i = 0 ; i < stationInfo.length ; ++i) {
             var stations = stationInfo[i];
             shortCode.push(stations.stationShortCode);
