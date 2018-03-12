@@ -5,17 +5,12 @@
     <title>Junat</title>
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
-
-
-
-
 </head>
 <!--
 @Outi @Tiina tekivät lähtökohtaisesti tämän HMTL-sivun ja @Outi on lähinnä vastuussa css-muotoilusta, vaikka muutkin ovat vähän auttaneet.
 @Johanna toteutti alkuperäisen login-sivun, jonka funktiot korvattiin pääsivuun popuppina.
 @Johanna suunnitteli myös modal-popupin, toteutuksessa mukana @Tiina @Outi.
 -->
-
 <body>
 <!--Navigaatiolinkit -->
 <nav>
@@ -39,17 +34,16 @@
             <input id= "pw" type="password" placeholder="Salasana"/>
             <input id="rgstr_btn" type="submit" value="Rekisteröidy" onClick="store()"/>
 
-
             <div class="already">Oletko jo käyttäjä?</a></div>
 
             <div class="title2">Kirjaudu sisään</div>
+
             <form id ="login-form"></form>
             <input id="userName" type="text" placeholder="Käyttäjätunnus"/>
             <input id= "userPw" type="password" placeholder="Salasana"/>
-            <input id="login_btn" type="submit" value="Kirjaudu sisään" onClick="check()"/></p>
+            <input id="login_btn" type="submit" value="Kirjaudu sisään" onClick="check()"/>
         </div>
     </div>
-
 
     <div id="search">
         <div id="from">
@@ -94,26 +88,16 @@
 
         </div>
         <div> <input type="text" placeholder="Lähtöaika hh:mm" id="setTime"></div>
-        <div> <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></div></br>
+        <div> <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></div>
 
     </div>
 
     <div id="results">
         <div id="list"></div>
-
-
-
     </div>
-
             </div>
 
-
-
-</div>
-
     <footer></footer>
-
-</div>
 
 <script src="junat.js"></script>
 </body>
