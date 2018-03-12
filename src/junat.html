@@ -6,50 +6,52 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
 
-
-
-
 </head>
 <!--
 @Outi @Tiina tekivät lähtökohtaisesti tämän HMTL-sivun ja @Outi on lähinnä vastuussa css-muotoilusta, vaikka muutkin ovat vähän auttaneet.
 @Johanna toteutti alkuperäisen login-sivun, jonka funktiot korvattiin pääsivuun popuppina.
 @Johanna suunnitteli myös modal-popupin, toteutuksessa mukana @Tiina @Outi.
 -->
-
 <body>
 <!--Navigaatiolinkit -->
 <nav>
     <img src="https://uploads-ssl.webflow.com/58e5f3f8d26a849c4569f248/58e5f3f8d26a849c4569f2f7_Academy_250x50%20footer.png">
-<ul>
-    <div id="loginbuttonDIV"><li><button id ="loginbutton">Kirjaudu sisään</button></li></div>
-    <div id="logoutbuttonDIV"><li><button id ="logoutbutton" onclick="logOut()">Kirjaudu ulos</button></li></div>
-</ul>
+    <ul>
+        <div id="loginbuttonDIV">
+            <li>
+                <button id="loginbutton">Kirjaudu sisään</button>
+            </li>
+        </div>
+        <div id="logoutbuttonDIV">
+            <li>
+                <button id="logoutbutton" onclick="logOut()">Kirjaudu ulos</button>
+            </li>
+        </div>
+    </ul>
     <p id="knownuser"></p>
 </nav>
-
 <!--Sisäänkirjautumistoiminto-->
 <div id="MainContent">
 
-    <div class="modal" id = "modal">
+    <div class="modal" id="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <p><div class="title1">Rekisteröidy</div>
-            <form id ="register-form"></form>
+            <p>
+            <div class="title1">Rekisteröidy</div>
+            <form id="register-form"></form>
             <input id="name1" type="text" placeholder="Käyttäjätunnus"/>
-            <input id= "pw" type="password" placeholder="Salasana"/>
+            <input id="pw" type="password" placeholder="Salasana"/>
             <input id="rgstr_btn" type="submit" value="Rekisteröidy" onClick="store()"/>
-
 
             <div class="already">Oletko jo käyttäjä?</a></div>
 
             <div class="title2">Kirjaudu sisään</div>
-            <form id ="login-form"></form>
+            <form id="login-form"></form>
             <input id="userName" type="text" placeholder="Käyttäjätunnus"/>
-            <input id= "userPw" type="password" placeholder="Salasana"/>
+            <input id="userPw" type="password" placeholder="Salasana"/>
             <input id="login_btn" type="submit" value="Kirjaudu sisään" onClick="check()"/></p>
         </div>
     </div>
-
 
     <div id="search">
         <div id="from">
@@ -69,7 +71,7 @@
                 <option value="Tikkurila"></option>
                 <option value="Turku"></option>
                 <option value="Vaasa"></option>
-    </datalist>
+            </datalist>
 
         </div>
 
@@ -90,31 +92,21 @@
                 <option value="Tikkurila"></option>
                 <option value="Turku"></option>
                 <option value="Vaasa"></option>
-    </datalist>
+            </datalist>
 
         </div>
-        <div> <input type="text" placeholder="Lähtöaika hh:mm" id="setTime"></div>
-        <div> <input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></div></br>
-
+        <div><input type="text" placeholder="Lähtöaika hh:mm" id="setTime"></div>
+        <div><input type="button" value="HAE AIKATAULU" id="hae" onclick=getFile()></div>
+        </br>
     </div>
-
     <div id="results">
         <div id="list"></div>
 
-
-
     </div>
-
-            </div>
-
-
-
 </div>
-
-    <footer></footer>
-
 </div>
-
+<footer></footer>
+</div>
 <script src="junat.js"></script>
 </body>
 </html>
