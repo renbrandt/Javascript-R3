@@ -9,9 +9,6 @@ var login_id = 0;
 var shortCode = [];
 var longCode = [];
 //Testailua varten välillä tyhjennetään localStora
-
-
-
 //ns. Pääfunktio, jonka avulla haetaan data internetistä.
 function getFile() {
     //napataan käyttäjän syöttämät lähtö- ja määränpääasemat HTML-formista.
@@ -83,7 +80,6 @@ function getFile() {
     xhttp.open("GET", 'https://rata.digitraffic.fi/api/v1/live-trains/station/' + depstation + '/' + arrstation + '/', true);
     xhttp.send(null);
 
-
     xhttp.onreadystatechange = function () {
         /* Lasketaan millisekunteista tunnit ja minuutit, jotta saadaan näytettyä matkan kesto @Tiina*/
         function msToTime(triptimeMS) {
@@ -97,7 +93,6 @@ function getFile() {
             }
             return hours + ":" + minutes;
         }
-
 
         if (xhttp.readyState == 4 && xhttp.status == 200) {
 
@@ -194,14 +189,11 @@ function getFile() {
                         timetable = timetable + "</div></div>";
                     }
 
-
                     // Muutetaan käyttäjän säätämät asemat ja tallenetaan ne hänen henkilökohtaisiin taulukoihin. Näiden avulla sisäänkirjautuessa
                     //käyttäjä saa suoraan viimeisimmän haun selaimelleen. @Renne @Johanna @Outi
                     if (login_id ==1 ){
                     var tempTableDept = JSON.parse(localStorage.getItem('userDeptStation'));
                     var tempTableArr = JSON.parse(localStorage.getItem("userArrStation"));
-
-
 
                     tempTableDept.splice(id_kayttaja, 1, depstation);
                     tempTableArr.splice(id_kayttaja, 1, arrstation);
@@ -212,18 +204,11 @@ function getFile() {
                 //Tulostetaan viimein kasattu data (Eli iso määrä divejä) html-sivulle.
                         document.getElementById("list").innerHTML = timetable;
 
-
-
                 }
-
-
             }
-
-        }
-        ;
+        };
         // Tyhjennetään datataulukko aina kun kutsutaan uutta dataa. @Tiina
         timetable = " ";
-
 }
 
 // haetaan päätyaseman indeksi json-taulukosta, jotta voidaan rajoittaa mottako asemaa näytetään. @Renne & @Tiina
@@ -245,7 +230,6 @@ function arrIndexSearch(result) {
         }
     }
 }
-
 
 // Tehdään käyttäjätilejä varten useampi taulukko. Username, password ja tarvittava data. @Outi @Johanna @Renne
     var usernameArray = [];
@@ -277,7 +261,6 @@ function arrIndexSearch(result) {
         checkInNewAccount();
 }
 
-
 //Käyettään tätä kirjautumiseen suoraan rekisteröitymisen yhteydessä
 // @Renne @Johanna
 function checkInNewAccount() {
@@ -300,8 +283,6 @@ function check() {
 
         // Luodaan muuttuja, jota käytetään hyväksi sisäänkirjautumisen onnistumisen tunnistamiseksi
         var valid = -1;
-
-
 
     // Haetaan käyttäjän syöttämät arvot login-kentistä
     var userName = document.getElementById('userName').value;
@@ -332,13 +313,10 @@ function check() {
             document.getElementById('knownuser').innerHTML="Olet kirjautuneena käyttäjänä:</br> "+ storedUser[id_kayttaja];
             modal.style.display="none";
             login_id=1;
-
-
         } else {
             alert('ERROR: Väärä käyttäjätunnus tai salasana');
         }
 }
-
 
 //Luotu erillinen kirjautumis-popup-ikkuna, joka sulkeutuu kun kirjaudutaan sisään @Outi @Tiina
 var modal = document.getElementById('modal');
@@ -348,12 +326,10 @@ var modal = document.getElementById('modal');
 
     btn.onclick=function() {
         modal.style.display="block";
-
     }
 
     login_btn.onclick=function() {
         check();
-
         document.getElementById("loginbutton").style.visibility = "hidden";
         document.getElementById("logoutbutton").style.visibility = "visible";
     }
@@ -380,8 +356,6 @@ lubtn.onclick=function() {
     document.getElementById("getArrCity").value= "";
 }
 
-
-
 // Käytetään tätä pysäkkien piilottamiseen! @Renne
 function toggleStopsVisibility(event) {
     var stopsToggle = event.target.firstElementChild;
@@ -391,7 +365,6 @@ function toggleStopsVisibility(event) {
         stopsToggle.style.display = "none";
     }
 }
-
 
 // Haetaan pysäkkien nimet shortchoden lisäksi @Tiina
 var xhttp2 = new XMLHttpRequest();
@@ -405,14 +378,13 @@ xhttp2.onreadystatechange = function () {
         var stationInfo = JSON.parse(xhttp2.responseText);
 
         // Lisätään taulukoihin kaikki arvot, jotta voidaan hakea koodille pitkä nimi @Renne @Tiina
-        for(var i = 0 ; i < stationInfo.length ; ++i) {
+        for (var i = 0; i < stationInfo.length; ++i) {
             var stations = stationInfo[i];
             shortCode.push(stations.stationShortCode);
             longCode.push(stations.stationName);
         }
-
-    };
-}
+    }
+};
 
 document.getElementById("logoutbutton").style.visibility = "hidden";
 
